@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>24 Point Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="app-container">
+    <!-- 调色板菜单 -->
+    <div id="palette-menu" class="palette-menu">
+        <!-- 由 JS 填充 -->
+    </div>
+
+    <!-- HOME SCREEN -->
+    <div id="screen-home" class="screen active">
+        <div class="top-bar" style="justify-content: flex-end;">
+            <button class="btn btn-icon" onclick="App.togglePalette()" title="Theme">🎨</button>
+            <button class="btn btn-icon" onclick="App.showSettings()" data-t="settings">⚙️</button>
+            <button class="btn btn-icon" onclick="App.showHelp()" data-t="help">❓</button>
+        </div>
+        <div style="flex:1; display:flex; flex-direction:column; justify-content:center; align-items:center;">
+            <h1 style="font-size: 3rem; margin-bottom: 10px;" data-t="show">24 Point</h1>
+            <p style="opacity: 0.8; margin-bottom: 40px;" data-t="introduction">A fast-paced math game suites for K-5 students</p>
+            <button class="btn btn-primary" style="width: 200px;" onclick="App.startGame()" data-t="start_game">Start Game</button>
+            <button class="btn" style="width: 200px;" onclick="App.showCalculator()" data-t="calculator">Calculator</button>
+        </div>
+    </div>
+
+    <!-- GAME SCREEN -->
+    <div id="screen-game" class="screen">
+        <div id="timer-bar-container"><div id="timer-bar"></div></div>
+        <div class="top-bar">
+            <!-- Point 3: Home 键逻辑修改 -->
+            <button class="btn btn-icon" onclick="App.endGameAndHistory();">🏠</button>
+            <div class="status-bar">
+                <span id="stamina-display">❤️ 10/10</span>
+                <span id="streak-display">🔥 0</span>
+            </div>
+            <!-- 重来按钮 (New) -->
+            <button class="btn btn-icon" onclick="App.restartLevel()" title="Restart">🔄</button>
+            <!-- 提示按钮 提示且做出，扣一分 提示且做不出 扣两分 未做出扣两分 -->
+            <button class="btn btn-icon" onclick="App.useHint()">💡</button> 
+        </div>
+        
+        <div id="game-area">
+            <!-- 卡槽 (用于视觉引导和JS定位) -->
+            <div class="card-slot" data-slot="0"></div>
+            <div class="card-slot" data-slot="1"></div>
+            <div class="card-slot" data-slot="2"></div>
+            <div class="card-slot" data-slot="3"></div>
+            <!-- 卡片由 JS 注入 -->
+        </div>
+
+        <div class="op-indicator" id="op-indicator">Addition</div>
+        
+        <div class="key-legend">
+            <div><span class="key-badge" id="key-w">W</span> <span data-t="op_mul">×</span></div>
+            <div><span class="key-badge" id="key-a">A</span> <span data-t="op_add">+</span></div>
+            <div><span class="key-badge" id="key-s">S</span> <span data-t="op_div">÷</span></div>
+            <div><span class="key-badge" id="key-d">D</span> <span data-t="op_sub">-</span></div>
+        </div>
+
+        <div style="display:flex; justify-content: space-around; width: 100%; margin-top:10px;">
+            <button class="btn btn-primary" onclick="App.submitAnswer() " data-t="claim_no_solution">声明无解</button>
+        </div>
+
+    </div>
+
+    <!-- SETTLEMENT SCREEN -->
+    <div id="screen-settlement" class="screen" style="justify-content: center; align-items: center; background: rgba(0,0,0,0.4); z-index: 100;">
+        <div style="background: var(--bg-card); padding: 30px; border-radius: 20px; width: 100%; text-align: center; color: var(--text-main); border: 1px solid var(--border-container); box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+            <h2 id="settlement-title">Success!</h2>
+            <div id="settlement-content" style="margin: 20px 0; text-align: left;"></div>
+            <button class="btn btn-primary" onclick="App.nextLevel()" data-t="next_level">Next Level</button>
+            <button class="btn" onclick="App.endGameAndHistory()" data-t="view_history">End & View History</button>
+        </div>
+    </div>
+
+    <!-- CALCULATOR SCREEN -->
+    <div id="screen-calculator" class="screen">
+        <div class="top-bar">
+            <button class="btn btn-icon" onclick="App.showHome()">⬅️</button>
+            <h2 style="margin:0;" data-t="calculator">Calculator</h2>
+            <div style="width: 40px;"></div>
+        </div>
+        <div class="calc-grid">
+            <!-- Point 6: 输入验证 -->
+            <input type="number" class="calc-input" id="calc-n1" placeholder="?" min="1" max="13" oninput="App.validateInput(this)">
+            <input type="number" class="calc-input" id="calc-n2" placeholder="?" min="1" max="13" oninput="App.validateInput(this)">
+            <input type="number" class="calc-input" id="calc-n3" placeholder="?" min="1" max="13" oninput="App.validateInput(this)">
+            <input type="number" class="calc-input" id="calc-n4" placeholder="?" min="1" max="13" oninput="App.validateInput(this)">
+        </div>
+        <button class="btn btn-primary" onclick="App.calculate()" style="width: 100%;" data-t="solve">Solve</button>
+        <div class="calc-results" id="calc-output"></div>
+    </div>
+
+    <!-- SETTINGS SCREEN -->
+    <div id="screen-settings" class="screen">
+        <div class="top-bar">
+            <button class="btn btn-icon" onclick="App.showHome()">⬅️</button>
+            <h2 style="margin:0;" data-t="settings">Settings</h2>
+            <div style="width: 40px;"></div>
+        </div>
+        <div class="settings-row">
+            <span data-t="language">Language</span>
+            <select id="setting-lang" class="btn" onchange="App.changeLang(this.value)">
+                <option value="zh">中文</option>
+                <option value="en">English</option>
+                <option value="es">Español</option>
+                <option value="fr">Français</option>
+                <option value="de">Deutsch</option>
+
+            </select>
+        </div>
+        <div class="settings-row">
+            <span data-t="card_style">Card Style</span>
+            <select id="setting-style" class="btn" onchange="App.changeCardStyle(this.value)">
+                <option value="modern" data-t="style_modern">Modern</option>
+                <option value="magic" data-t="style_magic">Magic</option>
+                <option value="colorful" data-t="style_colorful">Colorful</option>
+            </select>
+        </div>
+        <div class="settings-row">
+            <span data-t="setting_no_sol">Allow No Solution</span>
+            <!-- 使用简单的 checkbox 或 select -->
+            <label class="switch">
+                <input type="checkbox" id="setting-no-sol" onchange="App.toggleNoSolMode(this) " checked>
+                <span class="slider round"></span>
+            </label>
+        </div>
+    </div>
+    
+    <!-- HELP SCREEN -->
+    <div id="screen-help" class="screen">
+        <div class="top-bar">
+             <button class="btn btn-icon" onclick="App.showHome()">🏠</button>
+             <h2 data-t="help">Help</h2>
+             <div style="width: 40px;"></div>
+        </div>
+        <div class= "help-content">
+            <p data-t="game_rule">Players drag number cards and press different WASD keys during dragging to determine the operation method. Make the cards collide and merge, and finally synthesize a '24-point block' to win.</p>
+        </div>
+    </div>
+    
+    <!-- HISTORY SCREEN -->
+    <div id="screen-history" class="screen">
+        <div class="top-bar">
+             <button class="btn btn-icon" onclick="App.showHome()">🏠</button>
+             <h2 data-t="game_history">Game History</h2>
+             <div style="width: 40px;"></div>
+        </div>
+        <!-- Point 4: Markdown 导出按钮 -->
+        <div style="display:flex; gap:10px; margin-bottom:10px;">
+            <button class="btn" style="flex:1; font-size:0.9rem;" onclick="App.exportMarkdown('all')" data-t="export_all">📥 Export All</button>
+            <button class="btn" style="flex:1; font-size:0.9rem;" onclick="App.exportMarkdown('wrong')" data-t="export_wrong">📥 Export Wrong</button>
+            <button class="btn btn-primary" style="flex:1; font-size:0.9rem;" onclick="App.printCards('all')" data-t="print_all">🖨️ Print All</button>
+            <button class="btn btn-danger" style="flex:1; font-size:0.9rem;" onclick="App.printCards('wrong')" data-t="print_wrong">🖨️ Print Wrong</button>
+
+        </div>
+        <div id="history-list" class="calc-results"></div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

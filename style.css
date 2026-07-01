@@ -1,0 +1,622 @@
+:root {
+    /* --- 核心语义变量 (默认: 毛玻璃 Glass) --- */
+    --bg-body: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+    --bg-container: rgba(255, 255, 255, 0.15);
+    --border-container: rgba(255, 255, 255, 0.2);
+    --blur-amt: 12px;
+    --text-main: #2d3748;
+    --color-accent: #667eea;
+    --color-danger: #e53e3e;
+    --color-success: #38a169;
+    --bg-card: rgba(255, 255, 255, 0.9);
+    --shadow-card: 0 4px 6px rgba(0,0,0,0.1);
+    --shadow-container: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+    
+    /* 按钮样式 */
+    --btn-bg: rgba(255,255,255,0.4);
+    --btn-border: rgba(255,255,255,0.6);
+    --btn-text: #2d3748;
+    
+    /* 字体 */
+    --font-stack: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* --- 主题覆盖定义 --- */
+
+/* 📜 宣纸 (Paper) */
+[data-theme="paper"] {
+    --bg-body: #E5DEC9;
+    --bg-container: #F8F4E6;
+    --border-container: #d4cbb8;
+    --blur-amt: 0px;
+    --text-main: #2b2b2b;
+    --color-accent: #8B2626;
+    --color-success: #556B2F;
+    --bg-card: #f0ebe1;
+    --btn-bg: #eae5d9;
+    --btn-border: #d4cbb8;
+    --btn-text: #2b2b2b;
+}
+
+/* 🎋 竹简 (Bamboo) */
+[data-theme="bamboo"] {
+    --bg-body: #C3D0B9;
+    --bg-container: #E2EFE1;
+    --border-container: #B7C9B9;
+    --blur-amt: 0px;
+    --text-main: #2C3E2E;
+    --color-accent: #4A704A;
+    --color-success: #2E8B57;
+    --bg-card: #D5E5D5;
+    --btn-bg: #CFDFCF;
+    --btn-border: #B7C9B9;
+    --btn-text: #2C3E2E;
+}
+
+/* 🧳 牛皮 (Leather) */
+[data-theme="leather"] {
+    --bg-body: #D4B895;
+    --bg-container: #E8D5B7;
+    --border-container: #C2A882;
+    --blur-amt: 0px;
+    --text-main: #4A3625;
+    --color-accent: #7A5230;
+    --color-success: #8B4513;
+    --bg-card: #DCC5A3;
+    --btn-bg: #D1B994;
+    --btn-border: #C2A882;
+    --btn-text: #4A3625;
+}
+
+/* 🧛 暗血 (Dark Blood) */
+[data-theme="dark"] {
+    --bg-body: #121212;
+    --bg-container: #2A2A2A;
+    --border-container: #333333;
+    --blur-amt: 0px;
+    --text-main: #A3A3A3;
+    --color-accent: #8A1F1F;
+    --color-success: #8B0000;
+    --bg-card: #1E1E1E;
+    --btn-bg: #1A1A1A;
+    --btn-border: #333333;
+    --btn-text: #CCCCCC;
+    --shadow-card: 0 4px 6px rgba(0,0,0,0.5);
+}
+[data-theme="simple-white"] {
+    --bg-body: #F5F5F5;
+    --bg-container: #FFFFFF;
+    --border-container: #E0E0E0;
+    --text-main: #333333;
+    --color-accent: #667eea;
+    --color-success: #38a169;
+    --bg-card: #F0F0F0;
+    --btn-bg: #E0E0E0;
+    --btn-border: #D0D0D0;
+    --btn-text: #333333;
+}
+
+/* --- 全局重置 --- */
+* { box-sizing: border-box; touch-action: none; user-select: none; -webkit-user-select: none; }
+
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: var(--bg-body);
+    font-family: var(--font-stack);
+    color: var(--text-main);
+    overflow: hidden;
+    transition: background 0.5s ease;
+}
+
+#app-container {
+    width: 95vmin;
+    max-width: 600px;
+    aspect-ratio: 1 / 1;
+    background: var(--bg-container);
+    backdrop-filter: blur(var(--blur-amt));
+    -webkit-backdrop-filter: blur(var(--blur-amt));
+    border-radius: 24px;
+    border: 1px solid var(--border-container);
+    box-shadow: var(--shadow-container);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: background 0.3s, border-color 0.3s;
+}
+
+.screen {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    opacity: 0;
+    z-index: 0;
+}
+.screen.active {
+    opacity: 1;
+    pointer-events: all;
+    z-index: 10;
+}
+
+h1, h2 { margin: 0 0 15px 0; text-align: center; }
+
+/* --- 按钮样式优化 --- */
+.btn {
+    background: var(--btn-bg);
+    border: 1px solid var(--btn-border);
+    color: var(--btn-text);
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 5px;
+    backdrop-filter: blur(4px);
+    font-weight: 600;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 按钮悬浮炫光 */
+.btn:hover {
+    box-shadow: 0 0 15px var(--color-accent);
+    border-color: var(--color-accent);
+    transform: translateY(-2px);
+    z-index: 1;
+}
+
+.btn:active { transform: scale(0.95); opacity: 0.8; }
+.btn-primary { background: var(--color-accent); color: white; border: none; }
+.btn-danger { background: var(--color-danger); color: white; border: none; }
+.btn-icon { padding: 8px 12px; font-size: 1.2rem; }
+
+/* 顶部栏 */
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+    z-index: 50;
+    position: relative;
+}
+
+/* --- 倒计时条 --- */
+#timer-bar-container {
+    width: 100%;
+    height: 6px;
+    background: rgba(0,0,0,0.1);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+#timer-bar {
+    width: 100%;
+    height: 100%;
+    background: var(--color-accent);
+    transition: width 1s linear;
+}
+
+/* --- 游戏区域与卡槽 (Slots) --- */
+#game-area {
+    flex: 1;
+    position: relative;
+    border-radius: 16px;
+    margin: 10px 0;
+    /* 保持 2x2 布局的视觉提示，但不强制约束拖拽 */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 10px;
+    padding: 10px;
+}
+
+/* 隐形卡槽，用于定位 */
+.card-slot {
+    border: 1px dashed var(--border-container);
+    border-radius: 12px;
+    background: rgba(0,0,0,0.02);
+    position: relative; /* 参照物 */
+}
+
+/* --- 卡片样式设计 (Point 5) --- */
+.card {
+    width: 80px;
+    height: 110px;
+    border-radius: 12px;
+    position: absolute; /* 绝对定位以支持拖拽 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.8rem;
+    font-weight: bold;
+    box-shadow: var(--shadow-card);
+    cursor: grab;
+    transition: transform 0.1s, box-shadow 0.2s, background-color 0.3s, border-color 0.2s;
+    z-index: 20;
+    /* 默认 Modern 样式基础 */
+    background: var(--bg-card);
+    color: var(--text-main);
+    border: 1px solid var(--border-container);
+}
+
+.card.dragging {
+    cursor: grabbing;
+    transform: scale(1.1);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+    z-index: 100;
+}
+
+/* Point 1: 拖动重叠高亮 (蓝色) */
+.card.drag-over {
+    border: 3px solid #3b82f6 !important;
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.6) !important;
+    transform: scale(1.05);
+}
+
+.card.highlighted {
+    border: 3px solid #F59E0B;
+    animation: pulse 1s infinite;
+}
+
+/* 风格 1: Modern (默认) */
+.card-style-modern {
+    font-family: 'Segoe UI', sans-serif;
+    /* 使用默认变量 */
+}
+
+/* 风格 2: Magic (魔法) */
+.card-style-magic {
+    font-family: 'Georgia', serif;
+    background: linear-gradient(135deg, #2a1b3d 0%, #44318d 100%);
+    border: 2px solid #d4af37; /* 金色边框 */
+    color: #d4af37;
+    text-shadow: 0 0 5px rgba(212, 175, 55, 0.5);
+    box-shadow: 0 4px 15px rgba(42, 27, 61, 0.6);
+}
+
+/* 风格 3: Colorful (多彩) */
+.card-style-colorful {
+    font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif;
+    color: white;
+    text-shadow: 2px 2px 0px rgba(0,0,0,0.2);
+    border: 3px solid white;
+    /* 背景色由 JS 动态生成 */
+}
+
+/* --- 调色板菜单 --- */
+.palette-menu {
+    position: absolute;
+    top: 55px;
+    right: 15px;
+    background: var(--bg-container);
+    border: 1px solid var(--border-container);
+    padding: 10px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 200;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-10px);
+    transition: all 0.2s;
+}
+.palette-menu.show {
+    opacity: 1;
+    pointer-events: all;
+    transform: translateY(0);
+}
+.theme-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    transition: background 0.2s;
+}
+.theme-option:hover {
+    background: rgba(0,0,0,0.05);
+}
+.color-dot {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 2px solid rgba(0,0,0,0.1);
+}
+
+/* --- 状态栏与控制 --- */
+.status-bar {
+    display: flex;
+    justify-content: space-between;
+    background: var(--btn-bg);
+    padding: 8px 16px;
+    border-radius: 30px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    border: 1px solid var(--border-container);
+}
+
+.op-indicator {
+    position: absolute;
+    bottom: 60px; /* 调整位置避免遮挡按键说明 */
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,0.7);
+    color: white;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+.op-indicator.visible { opacity: 1; }
+
+.key-legend {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 5px;
+    font-size: 0.8rem;
+}
+.key-badge {
+    background: var(--btn-bg);
+    color: var(--text-main);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: bold;
+    border: 1px solid var(--border-container);
+}
+.key-active { background: var(--color-accent); color: white; border-color: var(--color-accent); }
+
+/* --- 计算器与历史记录 --- */
+.calc-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+}
+.calc-input {
+    width: 100%;
+    padding: 15px;
+    text-align: center;
+    font-size: 1.2rem;
+    border-radius: 12px;
+    border: 1px solid var(--border-container);
+    background: var(--btn-bg);
+    color: var(--text-main);
+    outline: none;
+}
+.calc-results {
+    flex: 1;
+    overflow-y: auto;
+    background: rgba(0,0,0,0.05);
+    border-radius: 12px;
+    padding: 10px;
+    margin-top: 10px;
+    font-family: monospace;
+    font-size: 1.1rem;
+}
+
+/* --- 设置 --- */
+.settings-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid var(--border-container);
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7); }
+    70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(245, 158, 11, 0); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
+}
+
+/* 滚动条美化 */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.2); border-radius: 4px; }
+
+/* 开关样式*/
+    .switch { position: relative; display: inline-block; width: 50px; height: 24px; }
+    .switch input { opacity: 0; width: 0; height: 0; }
+    .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 24px; }
+    .slider:before { position: absolute; content: ""; height: 16px; width: 16px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
+    input:checked + .slider { background-color: var(--color-accent); }
+    input:checked + .slider:before { transform: translateX(26px); }
+
+    /* --- Toast 容器 --- */
+#toast-container {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    z-index: 9999; /* 确保在最顶层 */
+    pointer-events: none; /* 允许鼠标点击穿透容器 */
+    width: 100%;
+    max-width: 400px;
+    padding: 0 15px;
+}
+
+/* --- Toast 基础卡片样式 --- */
+.toast {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 20px;
+    width: fit-content;
+    max-width: 100%;
+    
+    /* 核心风格：继承你的毛玻璃卡片设计 */
+    background: var(--bg-card);
+    backdrop-filter: blur(var(--blur-amt));
+    -webkit-backdrop-filter: blur(var(--blur-amt));
+    border: 1px solid var(--border-container);
+    border-radius: 12px;
+    box-shadow: var(--shadow-container);
+    color: var(--text-main);
+    font-family: var(--font-stack);
+    font-weight: 600;
+    
+    /* 动画初始状态：上浮且透明 */
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: auto; /* 恢复卡片本身的鼠标事件 */
+}
+
+/* --- Toast 进场动画 --- */
+.toast.show {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* --- 图标样式 --- */
+.toast-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    color: white;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+}
+
+.toast-message {
+    font-size: 1rem;
+    line-height: 1.4;
+    word-break: break-word;
+}
+
+/* --- 类型颜色适配 (使用你的全局色彩变量) --- */
+.toast-success .toast-icon { background: var(--color-success); }
+.toast-error .toast-icon   { background: var(--color-danger); }
+.toast-info .toast-icon    { background: var(--color-accent); }
+/* 如果你将来加了警告色，可以在这里用原生的亮橙色兜底 */
+.toast-warning .toast-icon { background: #F59E0B; } 
+
+/* 针对暗血主题增强边缘对比度 (可选) */
+[data-theme="dark"] .toast {
+    box-shadow: 0 4px 15px rgba(0,0,0,0.8);
+}
+
+/* --- Confirm 全屏遮罩层 --- */
+.confirm-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* 背景微微变暗并加一点点模糊，突出对话框 */
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    z-index: 10000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    /* 动画初始状态 */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* --- Confirm 对话框卡片 --- */
+.confirm-dialog {
+    /* 完全继承你的核心毛玻璃语义变量 */
+    background: var(--bg-card);
+    backdrop-filter: blur(var(--blur-amt));
+    -webkit-backdrop-filter: blur(var(--blur-amt));
+    border: 1px solid var(--border-container);
+    border-radius: 16px;
+    box-shadow: var(--shadow-container);
+    color: var(--text-main);
+    font-family: var(--font-stack);
+    
+    width: 90%;
+    max-width: 380px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    
+    /* 动画初始状态：略微缩小且下沉 */
+    transform: translateY(-20px) scale(0.95);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* --- 进场动画 --- */
+.confirm-overlay.show { opacity: 1; }
+.confirm-overlay.show .confirm-dialog {
+    transform: translateY(0) scale(1);
+}
+
+/* --- 文字排版 --- */
+.confirm-title {
+    margin: 0;
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: var(--text-main);
+}
+
+.confirm-message {
+    margin: 0;
+    font-size: 1.05rem;
+    line-height: 1.5;
+    opacity: 0.85; /* 略微降低透明度形成层级 */
+}
+
+/* --- 按钮区域 --- */
+.confirm-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+/* 覆盖你原有的 .btn 的 margin，防止在弹窗里对不齐 */
+.confirm-buttons .btn {
+    margin: 0;
+    padding: 10px 20px;
+}
+
+/* 帮助屏幕样式 */
+.help-content {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    font-size: 1rem;
+    line-height: 1.6;
+    background: var(--bg-card);
+    border-radius: 16px;
+    margin: 10px 20px 20px 20px;
+    border: 1px solid var(--border-container);
+    box-shadow: var(--shadow-card);
+}
+
+/* 帮助内容中的段落样式 */
+.help-content p {
+    margin-bottom: 15px;
+    color: var(--text-main);
+}
