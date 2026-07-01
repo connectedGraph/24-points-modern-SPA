@@ -76,7 +76,7 @@ Since this is a client-side SPA with zero dependencies, you can run it immediate
    ```bash
    git clone https://github.com/connectedGraph/24-points-modern-SPA.git
    ```
-2. Open 24points.html directly in any modern web browser.
+2. Open index.html directly in any modern web browser.
 
 ---
 
@@ -146,7 +146,7 @@ return is_neg ? "-" + h : h;
    ```bash
    git clone https://github.com/connectedGraph/24-points-modern-SPA.git
    ```
-2. 直接在任意现代浏览器中打开 24points.html 即可。
+2. 直接在任意现代浏览器中打开 index.html 即可。
 
 ---
 
