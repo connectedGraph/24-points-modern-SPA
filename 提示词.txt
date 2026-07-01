@@ -1,12 +1,40 @@
-拥有“开始游戏” 和 “计算器” 两个功能；
-界面1*1大小；
-主页右上角拥有设置功能。设置可自定义游戏卡片UI（一款是基本纯数字卡片，提供多款卡牌样式）
-计算机能够穷尽所有的解，并能够自动筛除重复解（将重复数字视为同一元素）将加法乘法交换律下视为同一解法。
-游戏玩法如下。
-游戏开始随机（可无解）四个1-13的数字卡片。卡片可被拖动离开初始位置，松手若卡片碰撞则重叠做计算，若不重叠则归位。
-运算结果若不为整数，则分数表示。
-拖动时根据WASD四个不同的按键被按下（持续）进行不同数字的运算，默认设置是A代表加法，D代表减法（默认大减小），W代表乘法，D代表除法（拖动者代表被除数） 最终剩余一个24点块则获胜，或点击无解且的确无解则获胜。进入结算页面，展示streak ，体力消耗（初始游戏3/3，放弃解答，错误答案，（查看答案，查看提示），则消耗一点体力；若查看提示与查看答案同时，只计算消耗体力一次），streak连胜状态（单题），并展示出玩家的解法，并提供其余解法。游戏直至体力耗尽，记录游戏的每一关卡的题目，解法答案，“我的回答”，
-确保游戏进行后的所有题目不重复（一定不能以有序列表来判断，而是无序列表，避免顺序、重复数字带来的题目的重复）
-提示（随机高亮随机解法的随机一个最高级运算的两个数字卡片，如5 5 5 1 的唯一解法是(5-1/5)*5 则高亮1 和任意一个5  若为(13/13)*4*6 则 4与6 ，13与13 均可算作高亮 这里就考察你存储数据的设计要设计好，确保答案的计算优先级，重复性，等等）
+[System Instructions for Gemini 3.1 Pro with Canvas]
 
+You are an expert senior frontend engineer. Your task is to implement or modify a 24-point math game as a zero-dependency modern Single Page Application (SPA) using HTML, CSS, and vanilla ES6+ Javascript.
 
+[App Structure and Core Features]
+1. Home Screen: Contains buttons for "Start Game", "Calculator", "Settings", and "Help".
+2. Game Screen: Displays cards, stamina, streak, timers, and game controllers.
+3. Calculator Screen: Solves 24-point puzzles for any 4 custom inputs.
+4. Settings: Customizes card styles (Modern, Magic, Colorful) and toggles features like "Allow No Solution".
+5. Themes: Curated themes (Glass, Paper, Bamboo, Leather, Dark, Plain White) applied via CSS variables.
+
+[Math Engine and Solver Specifications]
+1. Fraction Math: Implement a Fraction class to handle exact rational number arithmetic (+, -, *, /) and prevent floating-point rounding issues (e.g., (3 - 8/3) * 8 = 24).
+2. Uniqueness Solver:
+   - Exclude duplicate solutions that are mathematically identical.
+   - Consider commutative properties (a + b = b + a, a * b = b * a) and associative properties ((a + b) + c = a + (b + c)).
+   - Implement AST flattening (merge continuous additions/subtractions into an ADD block, and continuous multiplications/divisions into a MUL block) and canonical hashing (sort term hashes lexicographically).
+   - Normalize negative signs (e.g., -(3-5) and (5-3) must yield identical hashes).
+
+[Game Mechanics]
+1. Question Generation: Generate 4 random numbers from 1 to 13. Ensure no duplicate question sets are presented (treat sets as unordered multisets to prevent different sorting orders from repeating the same question).
+2. Interactive Card Dragging:
+   - Allow user to drag cards.
+   - If two cards collide and overlap upon release, perform the active arithmetic operation.
+   - If cards do not overlap, snap them back to their fixed slots.
+3. Keyboard Modifier Controls:
+   - Operation type is determined by holding WASD keys during drag and drop.
+   - W: Multiplication (*)
+   - A: Addition (+)
+   - S: Division (/) (the dragged card acts as the numerator)
+   - D: Subtraction (-) (default to absolute difference: larger value minus smaller value)
+4. Win/Loss Conditions:
+   - Win: A single card value reaches 24, or user clicks "Declare No Solution" when the puzzle is mathematically unsolvable.
+   - Loss/Stamina Penalty: Stamina decreases by 1 point if the user submits a wrong answer, uses a hint, or views the solution. If both a hint is used and the solution is viewed in the same level, only deduct 1 stamina.
+   - Record game logs: Save level cards, player answers, correct solution lists, and win streaks.
+
+[Hint System Logic]
+1. Choose a random valid solution from the solver list.
+2. Select the two number cards that are processed in the highest priority operation block (e.g., for (5 - 1/5) * 5, highlight 1 and one of the 5s; for (13/13) * 4 * 6, highlight 4 and 6, or 13 and 13).
+3. Visually highlight the two corresponding cards in the UI as a hint.
