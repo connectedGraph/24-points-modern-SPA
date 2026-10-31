@@ -16,15 +16,18 @@ export const Panel: React.FC<{
   title: React.ReactNode[];
   body?: React.ReactNode;
   children?: React.ReactNode;
+  /** 标题下面的大公式（MathML），不参与逐行升起的裁切，单独淡入 */
+  hero?: React.ReactNode;
   titleSize?: number;
   width?: number;
   /** 提前退场（秒）：0.3s 淡出并左移 */
   exit?: number;
-}> = ({ t, from, ink, kicker, title, body, children, titleSize = 74, width = 680, exit }) => {
+}> = ({ t, from, ink, kicker, title, body, children, hero, titleSize = 74, width = 680, exit }) => {
   const e = t - from;
   const k = ramp(e, 0, 0.32);
   const bd = ramp(e, 0.26, 0.42);
   const ch = ramp(e, 0.34, 0.45);
+  const hr = ramp(e, 0.22, 0.5);
   const out = exit === undefined ? 0 : ramp(t, exit, 0.3);
   if (out >= 1) return null;
   return (
@@ -81,6 +84,9 @@ export const Panel: React.FC<{
           </div>
         );
       })}
+      {hero && (
+        <div style={{ marginTop: 26, opacity: hr, transform: `translateY(${(1 - hr) * 20}px)` }}>{hero}</div>
+      )}
       {body && (
         <div
           style={{

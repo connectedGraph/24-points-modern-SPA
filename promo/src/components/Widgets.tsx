@@ -1,5 +1,6 @@
 import React from 'react';
 import { FONT, type ThemeId, THEME_ZH } from '../lib/theme';
+import { Math as MathML } from './Math';
 import { easeOut, ramp } from '../lib/motion';
 import type { OpKey } from '../game/types';
 import type { Ink } from './Panel';
@@ -50,16 +51,16 @@ export const Keycaps: React.FC<{ active: OpKey | null; ink: Ink }> = ({ active, 
   </div>
 );
 
-/** 合并记录：每次松手多一行「a op b = c」，结果用强调色 */
-export const Trace: React.FC<{ t: number; lines: { at: number; text: string }[]; ink: Ink; size?: number }> = ({
-  t,
-  lines,
-  ink,
-  size = 34,
-}) => {
+/** 合并记录：每次松手多一行「a op b = c」，公式用 MathML 排（分数是上下两层），结果用强调色 */
+export const Trace: React.FC<{
+  t: number;
+  lines: { at: number; text: string; math?: [string, string] }[];
+  ink: Ink;
+  size?: number;
+}> = ({ t, lines, ink, size = 34 }) => {
   const shown = lines.filter((l) => t >= l.at);
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 10, minHeight: lines.length * (size * 1.45 + 10) }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
       {shown.map((l, i) => {
         const p = ramp(t, l.at, 0.32, easeOut);
         const last = i === shown.length - 1;
@@ -68,17 +69,19 @@ export const Trace: React.FC<{ t: number; lines: { at: number; text: string }[];
           <div
             key={i}
             style={{
-              fontFamily: FONT.mono,
-              fontSize: size,
-              fontWeight: 500,
-              lineHeight: 1.45,
+              display: 'flex',
+              alignItems: 'center',
+              gap: 14,
+              height: size * 1.75,
               color: last ? ink.text : ink.soft,
               opacity: p,
               transform: `translateX(${(1 - p) * -24}px)`,
               whiteSpace: 'nowrap',
             }}
           >
-            {lhs} = <span style={{ color: ink.accent, fontWeight: 700 }}>{rhs}</span>
+            {l.math ? <MathML html={l.math[0]} size={size} color={last ? ink.text : ink.soft} /> : <span style={{ fontFamily: FONT.mono, fontSize: size }}>{lhs}</span>}
+            <span style={{ fontFamily: FONT.mono, fontSize: size * 0.9, opacity: 0.75 }}>=</span>
+            {l.math ? <MathML html={l.math[1]} size={size} color={last ? ink.accent : ink.soft} /> : <span style={{ fontFamily: FONT.mono, fontSize: size, color: ink.accent }}>{rhs}</span>}
           </div>
         );
       })}

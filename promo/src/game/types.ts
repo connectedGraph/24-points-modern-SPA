@@ -50,6 +50,8 @@ export type GameSnap = {
   timer: number;
   /** 提示高亮：哪些卡、从哪一秒开始脉冲 */
   highlight?: { ids: number[]; since: number };
+  /** 顶部 toast（提示扣体力时弹的那条）；since 秒开始进场 */
+  toast?: { text: string; type: 'info' | 'warning' | 'success' | 'error'; since: number };
   settlement?: { success: boolean; msg?: string; solutions: string[]; streak: number; history: HistoryRow[] };
   calc?: { inputs: string[]; solved: boolean };
   history?: HistoryRow[];

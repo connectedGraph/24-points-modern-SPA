@@ -46,6 +46,8 @@ const I18N = {
         hint_paid: "Stamina -1(Hint)",
         error_paid: "Stamina -1(Error)",
         already_paid: "No extra penalty",
+        streak: "Streak",
+        ref_solution: "Solutions",
         export_all: "📥 Export All",
         export_wrong: "📥 Export Wrong",
         print_all: "🖨️ Print All",
@@ -81,6 +83,8 @@ const I18N = {
         hint_paid: "体力 -1(使用提示)",
         error_paid: "体力 -1(回答错误)",
         already_paid: "本关已扣除体力",
+        streak: "连胜",
+        ref_solution: "参考解",
         export_all: "📥 全部导出",
         export_wrong: "📥 错题导出",
         print_all: "🖨️ 全部打印",
@@ -118,6 +122,8 @@ es: {
     hint_paid: "Energía -1 (Pista)",
     error_paid: "Energía -1 (Error)",
     already_paid: "Sin sanción extra",
+    streak: "Racha",
+    ref_solution: "Soluciones",
     export_all: "📥 Exportar Todo",
     export_wrong: "📥 Exportar Errores",
     print_all: "🖨️ Imprimir Todo",
@@ -155,6 +161,8 @@ de: {
     hint_paid: "Ausdauer -1 (Hinweis)",
     error_paid: "Ausdauer -1 (Fehler)",
     already_paid: "Keine zusätzliche Strafe",
+    streak: "Siegesserie",
+    ref_solution: "Lösungen",
     export_all: "📥 Alles Exportieren",
     export_wrong: "📥 Fehler Exportieren",
     print_all: "🖨️ Alles Drucken",
@@ -192,6 +200,8 @@ fr: {
     hint_paid: "Endurance -1 (Indice)",
     error_paid: "Endurance -1 (Erreur)",
     already_paid: "Aucune pénalité supplémentaire",
+    streak: "Série",
+    ref_solution: "Solutions",
     export_all: "📥 Exporter Tout",
     export_wrong: "📥 Exporter les Erreurs",
     print_all: "🖨️ Imprimer Tout",
@@ -204,12 +214,14 @@ fr: {
 
 };
 function showToast(message, type = 'info', duration = 3000) {
-    // 1. 获取或创建容器 (使用 ID 确保唯一性)
+    // 1. 获取或创建容器（挂在游戏窗口里，不是浏览器视口顶层：
+    //    桌面端窗口只占屏幕中间一块，挂在 body 上的 toast 会飘到页面最顶端，离游戏很远）
+    const host = document.getElementById('app-container') || document.body;
     let container = document.getElementById('toast-container');
-    if (!container) {
+    if (!container || container.parentElement !== host) {
         container = document.createElement('div');
         container.id = 'toast-container';
-        document.body.appendChild(container);
+        host.appendChild(container);
     }
 
     // 2. 创建 Toast 元素
@@ -695,6 +707,119 @@ class Fraction {
     toString() { return this.d === 1 ? `${this.n}` : `${this.n}/${this.d}`; }
 }
 
+/**
+ * 公式排版：算式 → LaTeX → MathML。
+ *
+ * 求解器给出的是 "8 / (3 - 8 / 3)" 这样的纯文本。这里先把它转成 LaTeX
+ * （除法写成 \frac，乘号 \times），再用一个只覆盖本游戏所需子集的小解析器
+ * 把 LaTeX 转成 MathML，交给浏览器原生排版。不引第三方库，保持零依赖；
+ * 导出的 Markdown 里写的就是同一份 LaTeX。
+ */
+const MathTeX = {
+    // 算式文本 → 语法树：数字、+ - * /、括号；* / 优先，同级左结合
+    parse(exp) {
+        const tokens = String(exp).match(/\d+|[-+*/()]/g) || [];
+        let i = 0;
+        const peek = () => tokens[i];
+        const next = () => tokens[i++];
+        const expr = () => {
+            let node = term();
+            while (peek() === '+' || peek() === '-') node = { type: 'bin', op: next(), l: node, r: term() };
+            return node;
+        };
+        const term = () => {
+            let node = factor();
+            while (peek() === '*' || peek() === '/') node = { type: 'bin', op: next(), l: node, r: factor() };
+            return node;
+        };
+        const factor = () => {
+            const tk = next();
+            if (tk === '(') {
+                const e = expr();
+                next(); // ')'
+                return { type: 'group', e };
+            }
+            if (tk === '-') return { type: 'neg', e: factor() };
+            return { type: 'num', v: tk };
+        };
+        const tree = expr();
+        if (i !== tokens.length) throw new Error(`无法解析算式: ${exp}`);
+        return tree;
+    },
+
+    // 语法树 → LaTeX。分子分母本身就有分数线分组，外层括号省掉
+    texOf(node) {
+        const bare = (n) => this.texOf(n.type === 'group' ? n.e : n);
+        switch (node.type) {
+            case 'num': return node.v;
+            case 'neg': return `-${this.texOf(node.e)}`;
+            // 括号里有分数才用 \left( \right) 撑高，否则用普通括号，免得两边多出空隙
+            case 'group': return this.hasFrac(node.e) ? `\\left(${this.texOf(node.e)}\\right)` : `(${this.texOf(node.e)})`;
+            case 'bin':
+                if (node.op === '/') return `\\frac{${bare(node.l)}}{${bare(node.r)}}`;
+                return `${this.texOf(node.l)} ${{ '+': '+', '-': '-', '*': '\\times' }[node.op]} ${this.texOf(node.r)}`;
+        }
+    },
+
+    hasFrac(node) {
+        if (node.type === 'bin') return node.op === '/' || this.hasFrac(node.l) || this.hasFrac(node.r);
+        if (node.type === 'group' || node.type === 'neg') return this.hasFrac(node.e);
+        return false;
+    },
+
+    fromExp(exp) {
+        try { return this.texOf(this.parse(exp)); } catch (e) { return String(exp); }
+    },
+
+    fromFraction(f) {
+        if (f.d === 1) return String(f.n);
+        return `${f.n < 0 ? '-' : ''}\\frac{${Math.abs(f.n)}}{${f.d}}`;
+    },
+
+    // LaTeX（子集）→ MathML：数字、+ - = \times \div、( )、\left( \right)、\frac{}{}、{ }
+    toMathML(tex, display = false) {
+        const tokens = String(tex).match(/\\[a-zA-Z]+|\\.|\d+(?:\.\d+)?|[^\s]/g) || [];
+        let i = 0;
+        const OPS = { '+': '+', '-': '−', '=': '=', '\\times': '×', '\\div': '÷', '\\cdot': '⋅' };
+        const esc = (s) => s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+        // 读到 stop 为止的一串原子，包成 <mrow>
+        const seq = (stop) => {
+            let out = '';
+            while (i < tokens.length && tokens[i] !== stop) out += atom();
+            if (stop) i++;
+            return `<mrow>${out}</mrow>`;
+        };
+        const group = () => (tokens[i] === '{' ? (i++, seq('}')) : atom());
+        const atom = () => {
+            const tk = tokens[i++];
+            // 每一层分数都按 displaystyle 排（相当于 \dfrac），繁分数里层的数字不缩小
+            if (tk === '\\frac' || tk === '\\dfrac') return `<mfrac displaystyle="true">${group()}${group()}</mfrac>`;
+            if (tk === '\\left') {
+                const open = tokens[i++];
+                let inner = '';
+                while (i < tokens.length && tokens[i] !== '\\right') inner += atom();
+                i++; // \right
+                const close = tokens[i++];
+                return `<mrow><mo>${esc(open)}</mo>${inner}<mo>${esc(close)}</mo></mrow>`;
+            }
+            if (tk === '{') return seq('}');
+            if (tk === '\\,') return '<mspace width="0.17em"></mspace>';
+            if (tk in OPS) return `<mo>${OPS[tk]}</mo>`;
+            if (tk === '(' || tk === ')') return `<mo stretchy="false">${tk}</mo>`;
+            if (/^\d/.test(tk)) return `<mn>${tk}</mn>`;
+            return `<mi>${esc(tk.replace(/^\\/, ''))}</mi>`;
+        };
+        const body = seq(null);
+        // displaystyle：行内也按 \displaystyle 排，分子分母不缩成角标大小
+        return `<math${display ? ' display="block"' : ''} displaystyle="true" alttext="${esc(tex)}">${body}</math>`;
+    },
+
+    // 算式文本直接变成可插进页面的 MathML
+    html(exp, display = false) {
+        return this.toMathML(this.fromExp(exp), display);
+    },
+};
+
 
 const App = {
     state: {
@@ -929,7 +1054,9 @@ startTimer() {
         this.state.currentCards.forEach((c) => {
             const el = document.createElement('div');
             el.className = `card card-style-${this.state.cardStyle}`;
-            el.textContent = c.val.toString();
+            // 分数卡排成上下两层的分数（沿用卡面字体），整数照旧是纯文本
+            if (c.val.d === 1) el.textContent = c.val.toString();
+            else el.innerHTML = MathTeX.toMathML(MathTeX.fromFraction(c.val));
             el.dataset.id = c.id;
             
             if (this.state.cardStyle === 'colorful') {
@@ -1110,27 +1237,53 @@ startTimer() {
     useHint() {
         // 尝试扣分
         if (this.state.stamina <= 0) return;
-        
+        const txt = I18N[this.state.lang];
+
         // 每关 hint 只扣一次（用 penaltyPaid）
-        this.deductStamina('hint_paid', true);
+        const paid = this.deductStamina('hint_paid', true);
         if (this.state.stamina <= 0) return;
+        showToast(paid ? txt.hint_paid : txt.already_paid, paid ? 'warning' : 'info');
 
         this.restartLevel(false); // 提示时可不重置计时，按你喜好可改 true
-        
-        // 简单高亮实现：
 
-        for(let i=0; i<4; i++) {
-            for(let j=i+1; j<4; j++) {
-                const c1 = document.querySelector(`.card[data-id="${i}"]`);
-                const c2 = document.querySelector(`.card[data-id="${j}"]`);
-                if(c1 && c2) {
-                    c1.classList.add('highlighted');
-                    c2.classList.add('highlighted');
-                    setTimeout(() => document.querySelectorAll('.highlighted').forEach(e=>e.classList.remove('highlighted')), 2000);
-                    return; 
-                }
-            }
+        const ids = this.hintPair(this.state.levelNums, this.state.levelSolutions);
+        if (!ids) {
+            showToast(txt.no_solution, 'info');
+            return;
         }
+        ids.forEach(id => document.querySelector(`.card[data-id="${id}"]`)?.classList.add('highlighted'));
+        setTimeout(() => document.querySelectorAll('.highlighted').forEach(e => e.classList.remove('highlighted')), 2000);
+    },
+
+    /**
+     * 提示该先算哪两张卡：随机取一个参考解，找出两边都是原始数字、且嵌得最深的那一步运算
+     * （同样深时乘除优先）。比如 8 / (3 - 8 / 3) 先算 8 / 3，(13 / 13) * 4 * 6 先算 13 / 13。
+     * 返回这两个数在本关里的下标（= 卡片 id）；无解返回 null。
+     */
+    hintPair(nums, solutions, rand = Math.random) {
+        if (!solutions || solutions.length === 0) return null;
+        const sol = solutions[Math.floor(rand() * solutions.length)];
+        const strip = (n) => (n.type === 'group' ? strip(n.e) : n);
+        const steps = [];
+        const walk = (node, depth) => {
+            if (node.type === 'group' || node.type === 'neg') return walk(node.e, depth + 1);
+            if (node.type !== 'bin') return;
+            const l = strip(node.l), r = strip(node.r);
+            if (l.type === 'num' && r.type === 'num') {
+                steps.push({ depth, mulDiv: node.op === '*' || node.op === '/', a: Number(l.v), b: Number(r.v) });
+            }
+            walk(node.l, depth + 1);
+            walk(node.r, depth + 1);
+        };
+        walk(MathTeX.parse(sol.exp), 0);
+        steps.sort((x, y) => y.depth - x.depth || y.mulDiv - x.mulDiv);
+        // formatAST 会写出 "1 / x" 这种本关里没有的 1，对不上就换下一步
+        for (const s of steps) {
+            const i = nums.indexOf(s.a);
+            const j = nums.findIndex((n, k) => n === s.b && k !== i);
+            if (i >= 0 && j >= 0) return [i, j];
+        }
+        return [0, 1];
     },
 
     handleWin() {
@@ -1187,11 +1340,14 @@ startTimer() {
         if (success) {
             title.textContent = txt.success;
             title.style.color = 'var(--color-success)';
-            content.innerHTML = `<p>${txt.game_history}: ${this.state.streak}</p>`;
+            content.innerHTML = `<p>🔥 ${txt.streak}: ${this.state.streak}</p>`;
         } else {
             title.textContent = txt.fail;
             title.style.color = 'var(--color-danger)';
-            content.innerHTML = `<p>${msg}</p><p>Solutions:</p><ul>${this.state.levelSolutions.slice(0,1).map(s=>`<li>${s.exp}</li>`).join('')}</ul>`;
+            const sols = this.state.levelSolutions.slice(0, 1);
+            content.innerHTML = `<p>${msg}</p><p>${txt.ref_solution}:</p>` + (sols.length
+                ? `<ul class="sol-list">${sols.map(s => `<li>${MathTeX.html(s.exp)}</li>`).join('')}</ul>`
+                : `<p>${txt.no_solution}</p>`);
         }
 
         if (this.state.stamina <= 0) {
@@ -1216,7 +1372,9 @@ startTimer() {
             content += `## Round ${i+1}\n`;
             content += `- **Question**: ${h.q}\n`;
             content += `- **Result**: ${h.res}\n`;
-            content += `- **Solutions**:\n${h.sols.map(s => `  - ${s}`).join('\n')}\n\n`;
+            // 解写成 LaTeX 行内公式：Typora / Obsidian / GitHub 等 Markdown 预览会直接排版
+            const sols = h.sols.length ? h.sols.map(s => `  - $${MathTeX.fromExp(s)}$`).join('\n') : '  - No Solution';
+            content += `- **Solutions**:\n${sols}\n\n`;
         });
 
         // Trigger download
@@ -1236,7 +1394,7 @@ startTimer() {
         list.innerHTML = this.state.history.map((h, i) => `
             <div style="border-bottom:1px solid var(--border-container); padding:10px;">
                 <strong style="color:${h.success ? 'var(--color-success)' : 'var(--color-danger)'}">Round ${i+1}: [${h.q}] - ${h.res}</strong><br>
-                <small>${h.sols[0] || 'No Solution'}</small>
+                <small class="sol-line">${h.sols[0] ? MathTeX.html(h.sols[0]) : I18N[this.state.lang].no_solution}</small>
             </div>
         `).join('');
     },
@@ -1265,9 +1423,9 @@ startTimer() {
         const out = document.getElementById('calc-output');
         
         if (sols.length === 0) {
-            out.innerHTML = `<div style="color:var(--color-danger)">No Solution</div>`;
+            out.innerHTML = `<div style="color:var(--color-danger)">${I18N[this.state.lang].no_solution}</div>`;
         } else {
-            out.innerHTML = sols.map(s => `<div>${s.exp}</div>`).join('');
+            out.innerHTML = sols.map(s => `<div class="sol-line">${MathTeX.html(s.exp)}</div>`).join('');
         }
     },
 
@@ -1345,7 +1503,9 @@ startTimer() {
                     font-weight: bold; font-size: 1.2em; background: #fff;
                 }
                 
-                .solutions { font-family: monospace; font-size: 0.85em; color: #555; background: #eee; padding: 5px; border-radius: 4px;}
+                .solutions { font-size: 0.85em; color: #555; background: #eee; padding: 5px 8px; border-radius: 4px;}
+                .solutions .sol { margin: 4px 0; font-size: 1.15em; color: #333; }
+                math { font-family: "Latin Modern Math", "STIX Two Math", "Cambria Math", "Noto Sans Math", math; }
                 .win { color: green; } .loss { color: red; }
                 
                 @media print {
@@ -1367,7 +1527,7 @@ startTimer() {
                         </div>
                         <div class="solutions">
                             <div><strong>Ref Solution:</strong></div>
-                            ${h.sols.length > 0 ? h.sols.slice(0,3).map(s => `<div>• ${s}</div>`).join('') : 'No Solution'}
+                            ${h.sols.length > 0 ? h.sols.slice(0,3).map(s => `<div class="sol">• ${MathTeX.html(s)}</div>`).join('') : 'No Solution'}
                         </div>
                     </div>
                 `).join('')}

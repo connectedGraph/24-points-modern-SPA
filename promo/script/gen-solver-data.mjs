@@ -19,7 +19,7 @@ const patched = src.replace(HOOK, `${HOOK} globalThis.__paths.push({ exp: format
 
 const ctx = vm.createContext({ window: {}, document: {}, console });
 ctx.globalThis = ctx;
-const { Solver, Fraction, App, I18N, THEMES } = vm.runInContext(`${patched}\n;({ Solver, Fraction, App, I18N, THEMES })`, ctx);
+const { Solver, Fraction, App, I18N, THEMES, MathTeX } = vm.runInContext(`${patched}\n;({ Solver, Fraction, App, I18N, THEMES, MathTeX })`, ctx);
 
 const run = (nums) => {
   ctx.__paths = [];
@@ -42,6 +42,9 @@ for (const [k, nums] of Object.entries(PUZZLES)) {
   out.puzzles[k] = {
     nums,
     solutions: r.solutions,
+    // 游戏里显示用的同一套排版：算式 → LaTeX → MathML（script.js 的 MathTeX）
+    solutionsTex: r.solutions.map((e) => MathTeX.fromExp(e)),
+    solutionsMath: r.solutions.map((e) => MathTeX.html(e)),
     pathCount: r.paths.length,
     // 去重镜头只要 calc 那题的全部路径；其余题只留数量
     paths: k === 'calc' ? r.paths : undefined,
@@ -66,6 +69,7 @@ const MERGES = {
   ],
 };
 const SYM = { w: '×', a: '+', s: '÷', d: '−' };
+const TEXOP = { w: '\\times', a: '+', s: '\\div', d: '-' };
 const cardOut = (c) => ({ id: c.id, n: c.val.n, d: c.val.d, slot: c.slot, text: c.val.toString() });
 out.merges = {};
 for (const [k, steps] of Object.entries(MERGES)) {
@@ -91,6 +95,11 @@ for (const [k, steps] of Object.entries(MERGES)) {
       ontoSlot: c2.slot,
       result: res.toString(),
       trace: `${big.val.toString()} ${SYM[s.key]} ${small.val.toString()} = ${res.toString()}`,
+      // 片子里的合并记录用 MathML 排：左边算式、右边结果分开，结果单独上色
+      traceMath: [
+        MathTeX.toMathML(`${MathTeX.fromFraction(big.val)} ${TEXOP[s.key]} ${MathTeX.fromFraction(small.val)}`),
+        MathTeX.toMathML(MathTeX.fromFraction(res)),
+      ],
       cardsAfter: cards.map(cardOut),
     });
   });
@@ -98,6 +107,14 @@ for (const [k, steps] of Object.entries(MERGES)) {
   if (cards.length !== 1 || last.val.n !== 24 * last.val.d) throw new Error(`${k} 的合并没有算到 24`);
   out.merges[k] = { start: PUZZLES[k].map((n, i) => cardOut({ id: i, val: new Fraction(n), slot: i })), steps: rows };
 }
+
+// 提示：App.hintPair 取第 rand() 个参考解里最先该算的两张卡（rand 固定成 0，片子每次一样）
+const hintIds = App.hintPair(PUZZLES.hook, Solver.solve(PUZZLES.hook), () => 0);
+const first = MERGES.hook[0];
+if (!hintIds || hintIds.slice().sort().join() !== [first.drag, first.onto].sort().join()) {
+  throw new Error(`提示高亮的是 ${hintIds}，和片子里第一步拖的 ${first.drag} → ${first.onto} 对不上`);
+}
+out.hint = { ids: hintIds, text: I18N.zh.hint_paid };
 
 // 游戏记录：和 App.showSettlement 往 history 里 push 的结构一致
 const P = out.puzzles;
@@ -126,7 +143,10 @@ vm.runInContext('Date.now = () => 1793404800000;', ctx);
 App.state.history = out.history;
 App.exportMarkdown('wrong');
 if (!md.startsWith('# 24 Point Game History')) throw new Error('exportMarkdown 没有产出 Markdown');
-out.markdown = { name: mdName, text: md };
+// Markdown 里的 $…$ 行内公式，预先排成 MathML，片子里做「预览」用
+const mdMath = {};
+for (const m of md.matchAll(/\$([^$]+)\$/g)) mdMath[m[1]] = MathTeX.toMathML(m[1]);
+out.markdown = { name: mdName, text: md, math: mdMath };
 
 // 打印页：直接调 App.printCards('all')，把它 window.open 出来写进去的整页 HTML 收下来
 let printed = '';

@@ -169,6 +169,9 @@ export function apply(api: GameApi, s: GameSnap, cursorEl?: HTMLElement | null) 
     byId(doc, 'history-list').innerHTML = '';
   }
 
+  // ---- toast（提示扣体力时那条；游戏里 3s 后自己消失，这里按帧给透明度） ----
+  syncToast(doc, s, t);
+
   // ---- 屏幕可见性（放在最后：上面的 show* 函数会改 .active） ----
   for (const n of SCREENS) {
     const el = byId(doc, `screen-${n}`);
@@ -232,4 +235,45 @@ function drawCursor(
   } else {
     ring.style.opacity = '0';
   }
+}
+
+const TOAST_ICON: Record<string, string> = { success: '✓', error: '✕', warning: '⚠', info: 'ℹ' };
+
+/** 顶部 toast：容器和卡片各留一份，内容按 snap 更新，进出场用时间算（CSS transition 已关） */
+function syncToast(doc: Document, s: GameSnap, t: number) {
+  const host = (doc.getElementById('app-container') ?? doc.body) as HTMLElement;
+  let box = doc.getElementById('toast-container') as HTMLElement | null;
+  let el = doc.getElementById('__promo_toast') as HTMLElement | null;
+  if (!s.toast) {
+    if (el) el.remove();
+    if (box && box.childElementCount === 0) box.remove();
+    return;
+  }
+  const z = s.toast;
+  // 游戏里 3s 后收起；这里让它在提示高亮结束时（2s）开始退场，正好接上第一步操作
+  const dur = 1.75;
+  if (!box || box.parentElement !== host) {
+    box = doc.createElement('div');
+    box.id = 'toast-container';
+    host.appendChild(box);
+  }
+  if (!el) {
+    el = doc.createElement('div');
+    el.id = '__promo_toast';
+    el.setAttribute('role', 'alert');
+    el.innerHTML = '<span class="toast-icon"></span><span class="toast-message"></span>';
+    box.appendChild(el);
+  }
+  el.className = `toast toast-${z.type}`;
+  const icon = el.querySelector('.toast-icon') as HTMLElement;
+  const msg = el.querySelector('.toast-message') as HTMLElement;
+  if (icon.textContent !== TOAST_ICON[z.type]) icon.textContent = TOAST_ICON[z.type];
+  if (msg.textContent !== z.text) msg.textContent = z.text;
+  // 进场 .3s（toast.show 的 transition）、出场也 .3s；中间保持
+  const inP = easeOut(clamp01((t - z.since) / 0.3));
+  const outP = easeInOut(clamp01((t - z.since - dur) / 0.3));
+  el.style.opacity = String(inP * (1 - outP));
+  el.style.transform = `translateY(${(1 - inP) * -20 - outP * 20}px) scale(${0.95 + 0.05 * inP})`;
+  el.style.pointerEvents = 'none';
+  box.style.zIndex = '9999';
 }

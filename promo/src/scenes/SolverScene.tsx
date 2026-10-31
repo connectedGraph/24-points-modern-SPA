@@ -4,6 +4,7 @@ import { Overlay } from '../components/Stage';
 import { beat as b } from '../lib/beats';
 import { FONT } from '../lib/theme';
 import { clamp01, easeInOut, lerp, ramp, springAt } from '../lib/motion';
+import { Math as MathML } from '../components/Math';
 
 type Path = { exp: string; key: string };
 
@@ -30,7 +31,13 @@ const rnd = (i: number) => {
  * getHash 把它们映射到 4 个标准化哈希 —— 也就是计算器里那 4 行。
  * 数据来自 generated/solver.json（用 script.js 真跑、在 getHash 那一行插桩记下的每一条路径）。
  */
-export const SolverScene: React.FC<{ t: number; paths: Path[]; solutions: string[] }> = ({ t, paths, solutions }) => {
+export const SolverScene: React.FC<{
+  t: number;
+  paths: Path[];
+  solutions: string[];
+  /** 和 solutions 一一对应的 MathML（分数排成上下两层） */
+  solutionsMath: string[];
+}> = ({ t, paths, solutions, solutionsMath }) => {
   const order: string[] = [];
   for (const p of paths) if (!order.includes(p.key)) order.push(p.key);
   const count = order.map((k) => paths.filter((p) => p.key === k).length);
@@ -208,7 +215,16 @@ export const SolverScene: React.FC<{ t: number; paths: Path[]; solutions: string
                 color: '#eef1ff',
               }}
             >
-              <div style={{ fontFamily: FONT.mono, fontSize: 30, fontWeight: 600, lineHeight: 1.3 }}>{solutions[g] ?? firstExp[g]}</div>
+              <div style={{ display: 'flex', alignItems: 'center', minHeight: 96 }}>
+                {solutionsMath[g] ? (
+                  <MathML html={solutionsMath[g]} size={34} color="#eef1ff" style={{ whiteSpace: 'normal' }} />
+                ) : (
+                  <span style={{ fontFamily: FONT.mono, fontSize: 30, fontWeight: 600, lineHeight: 1.3 }}>{firstExp[g]}</span>
+                )}
+              </div>
+              <div style={{ fontFamily: FONT.mono, fontSize: 15, color: 'rgba(238,241,255,0.45)', lineHeight: 1.4, wordBreak: 'break-all' }}>
+                {solutions[g] ?? ''}
+              </div>
               <div>
                 <div style={{ fontFamily: FONT.mono, fontSize: 15, color: c, wordBreak: 'break-all', lineHeight: 1.45 }}>{k}</div>
                 <div style={{ marginTop: 16, fontFamily: FONT.sans, fontSize: 22, color: 'rgba(238,241,255,0.6)' }}>

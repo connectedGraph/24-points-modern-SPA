@@ -76,7 +76,8 @@ const Q: React.FC<{ e: number }> = ({ e }) => {
 export const HOOK_END = b(8);
 
 export const Hook: React.FC<{ t: number; nums: number[] }> = ({ t, nums }) => {
-  const exit = ramp(t, b(7.5), HOOK_END - b(7.5), easeIn);
+  // 收尾：整屏往前冲（放大），最后 0.18s 化掉 —— 冲劲盖过两层字叠在一起的那几帧
+  const exit = ramp(t, HOOK_END - 0.7, 0.7, easeIn);
   const k = ramp(t, b(1) - 0.05, 0.35);
   const eq = t - b(6);
   const eqS = springAt(eq, 15, 0.42);
@@ -91,9 +92,9 @@ export const Hook: React.FC<{ t: number; nums: number[] }> = ({ t, nums }) => {
           style={{
             position: 'absolute',
             inset: 0,
-            transform: `scale(${1 + exit * 0.2})`,
-            opacity: 1 - 0.25 * exit,
-            transformOrigin: '960px 500px',
+            transform: `scale(${1 + exit * 0.9})`,
+            transformOrigin: '960px 520px',
+            filter: exit > 0 ? `blur(${exit * 5}px)` : undefined,
           }}
         >
           <div

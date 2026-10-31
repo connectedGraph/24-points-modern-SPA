@@ -3,6 +3,7 @@ import { continueRender, delayRender } from 'remotion';
 import { FONT, type ThemeId, INK } from '../lib/theme';
 import { easeOut, ramp } from '../lib/motion';
 import type { Ink } from '../components/Panel';
+import { Math as MathML } from '../components/Math';
 
 const A4_W = 794;
 const A4_H = 1123;
@@ -34,13 +35,15 @@ const Kicker: React.FC<{ ink: Ink; p: number; children: React.ReactNode }> = ({ 
  * 「📥 错题导出」下载下来的那份 Markdown。内容是 gen-solver-data.mjs 调
  * App.exportMarkdown('wrong') 收下来的原文（文件名里的时间戳固定过）。
  */
-export const MarkdownCard: React.FC<{ t: number; from: number; name: string; text: string; theme: ThemeId }> = ({
-  t,
-  from,
-  name,
-  text,
-  theme,
-}) => {
+export const MarkdownCard: React.FC<{
+  t: number;
+  from: number;
+  name: string;
+  text: string;
+  /** 原文里每个 $…$ 行内公式预先排好的 MathML（gen-solver-data.mjs 生成的） */
+  math: Record<string, string>;
+  theme: ThemeId;
+}> = ({ t, from, name, text, math, theme }) => {
   const ink = INK[theme];
   const p = ramp(t, from + 0.04, 0.5, easeOut);
   const k = ramp(t, from, 0.3);
@@ -93,17 +96,24 @@ export const MarkdownCard: React.FC<{ t: number; from: number; name: string; tex
                   {head ? (
                     <span style={{ color: ink.accent, fontWeight: 700 }}>{line}</span>
                   ) : (
-                    line.split(/(\*\*[^*]+\*\*)/).map((seg, j) =>
-                      seg.startsWith('**') ? (
-                        <span key={j} style={{ fontWeight: 700 }}>
-                          {seg}
-                        </span>
-                      ) : (
+                    // 粗体照旧加粗；$…$ 行内公式换成 MathML —— 预览里就是排版好的分数
+                    line.split(/(\*\*[^*]+\*\*|\$[^$]+\$)/).map((seg, j) => {
+                      if (seg.startsWith('$') && math[seg.slice(1, -1)]) {
+                        return <MathML key={j} html={math[seg.slice(1, -1)]} size={26} color={ink.text} style={{ verticalAlign: 'middle', padding: '0 2px' }} />;
+                      }
+                      if (seg.startsWith('**')) {
+                        return (
+                          <span key={j} style={{ fontWeight: 700 }}>
+                            {seg}
+                          </span>
+                        );
+                      }
+                      return (
                         <span key={j} style={{ color: ink.soft }}>
                           {seg}
                         </span>
-                      ),
-                    )
+                      );
+                    })
                   )}
                 </div>
               );

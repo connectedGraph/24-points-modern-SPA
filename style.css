@@ -348,6 +348,7 @@ h1, h2 { margin: 0 0 15px 0; text-align: center; }
     margin-bottom: 10px;
     font-weight: bold;
     border: 1px solid var(--border-container);
+    gap: 14px;
 }
 
 .op-indicator {
@@ -412,6 +413,21 @@ h1, h2 { margin: 0 0 15px 0; text-align: center; }
     font-size: 1.1rem;
 }
 
+/* --- 公式（LaTeX → MathML，浏览器原生排版） --- */
+math {
+    font-family: "Latin Modern Math", "STIX Two Math", "Cambria Math", "Noto Sans Math", math;
+    font-size: 1.12em;
+}
+/* 卡面上的分数：保留卡面自己的字体与粗细，只借用分数线排版 */
+.card math { font-family: inherit; font-weight: inherit; font-size: 0.86em; }
+/* 拖拽只认卡片本身（makeDraggable 里 e.target === el） */
+.card * { pointer-events: none; }
+.sol-line { display: block; padding: 4px 0; }
+/* 记录页四个按钮：中文不在词中间折行；西文只在空格处折，两行尽量等长 */
+.history-actions .btn { padding: 10px 6px; margin: 0; line-height: 1.25; word-break: keep-all; text-wrap: balance; }
+.sol-list { margin: 8px 0; padding-left: 22px; }
+.sol-list li { padding: 4px 0; }
+
 /* --- 设置 --- */
 .settings-row {
     display: flex;
@@ -442,8 +458,8 @@ h1, h2 { margin: 0 0 15px 0; text-align: center; }
 
     /* --- Toast 容器 --- */
 #toast-container {
-    position: fixed;
-    top: 20px;
+    position: absolute;
+    top: 72px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;

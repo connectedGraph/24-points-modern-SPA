@@ -11,6 +11,12 @@
    "solutions": [
     "8 / (3 - 8 / 3)"
    ],
+   "solutionsTex": [
+    "\\frac{8}{3 - \\frac{8}{3}}"
+   ],
+   "solutionsMath": [
+    "<math displaystyle=\"true\" alttext=\"\\frac{8}{3 - \\frac{8}{3}}\"><mrow><mfrac displaystyle=\"true\"><mrow><mn>8</mn></mrow><mrow><mn>3</mn><mo>−</mo><mfrac displaystyle=\"true\"><mrow><mn>8</mn></mrow><mrow><mn>3</mn></mrow></mfrac></mrow></mfrac></mrow></math>"
+   ],
    "pathCount": 4
   },
   "speed": {
@@ -30,6 +36,26 @@
     "3 * (6 + 2 * 1)",
     "3 * (6 + 2 / 1)"
    ],
+   "solutionsTex": [
+    "(6 + 2) \\times 1 \\times 3",
+    "\\frac{6 + 2}{1} \\times 3",
+    "6 \\times 2 \\times (3 - 1)",
+    "3 \\times (2 + 6 \\times 1)",
+    "3 \\times \\left(2 + \\frac{6}{1}\\right)",
+    "6 \\times (3 + 2 - 1)",
+    "3 \\times (6 + 2 \\times 1)",
+    "3 \\times \\left(6 + \\frac{2}{1}\\right)"
+   ],
+   "solutionsMath": [
+    "<math displaystyle=\"true\" alttext=\"(6 + 2) \\times 1 \\times 3\"><mrow><mo stretchy=\"false\">(</mo><mn>6</mn><mo>+</mo><mn>2</mn><mo stretchy=\"false\">)</mo><mo>×</mo><mn>1</mn><mo>×</mo><mn>3</mn></mrow></math>",
+    "<math displaystyle=\"true\" alttext=\"\\frac{6 + 2}{1} \\times 3\"><mrow><mfrac displaystyle=\"true\"><mrow><mn>6</mn><mo>+</mo><mn>2</mn></mrow><mrow><mn>1</mn></mrow></mfrac><mo>×</mo><mn>3</mn></mrow></math>",
+    "<math displaystyle=\"true\" alttext=\"6 \\times 2 \\times (3 - 1)\"><mrow><mn>6</mn><mo>×</mo><mn>2</mn><mo>×</mo><mo stretchy=\"false\">(</mo><mn>3</mn><mo>−</mo><mn>1</mn><mo stretchy=\"false\">)</mo></mrow></math>",
+    "<math displaystyle=\"true\" alttext=\"3 \\times (2 + 6 \\times 1)\"><mrow><mn>3</mn><mo>×</mo><mo stretchy=\"false\">(</mo><mn>2</mn><mo>+</mo><mn>6</mn><mo>×</mo><mn>1</mn><mo stretchy=\"false\">)</mo></mrow></math>",
+    "<math displaystyle=\"true\" alttext=\"3 \\times \\left(2 + \\frac{6}{1}\\right)\"><mrow><mn>3</mn><mo>×</mo><mrow><mo>(</mo><mn>2</mn><mo>+</mo><mfrac displaystyle=\"true\"><mrow><mn>6</mn></mrow><mrow><mn>1</mn></mrow></mfrac><mo>)</mo></mrow></mrow></math>",
+    "<math displaystyle=\"true\" alttext=\"6 \\times (3 + 2 - 1)\"><mrow><mn>6</mn><mo>×</mo><mo stretchy=\"false\">(</mo><mn>3</mn><mo>+</mo><mn>2</mn><mo>−</mo><mn>1</mn><mo stretchy=\"false\">)</mo></mrow></math>",
+    "<math displaystyle=\"true\" alttext=\"3 \\times (6 + 2 \\times 1)\"><mrow><mn>3</mn><mo>×</mo><mo stretchy=\"false\">(</mo><mn>6</mn><mo>+</mo><mn>2</mn><mo>×</mo><mn>1</mn><mo stretchy=\"false\">)</mo></mrow></math>",
+    "<math displaystyle=\"true\" alttext=\"3 \\times \\left(6 + \\frac{2}{1}\\right)\"><mrow><mn>3</mn><mo>×</mo><mrow><mo>(</mo><mn>6</mn><mo>+</mo><mfrac displaystyle=\"true\"><mrow><mn>2</mn></mrow><mrow><mn>1</mn></mrow></mfrac><mo>)</mo></mrow></mrow></math>"
+   ],
    "pathCount": 110
   },
   "noSolution": {
@@ -40,6 +66,8 @@
     5
    ],
    "solutions": [],
+   "solutionsTex": [],
+   "solutionsMath": [],
    "pathCount": 0
   },
   "timeout": {
@@ -51,6 +79,12 @@
    ],
    "solutions": [
     "(7 * 7 - 1) / 2"
+   ],
+   "solutionsTex": [
+    "\\frac{7 \\times 7 - 1}{2}"
+   ],
+   "solutionsMath": [
+    "<math displaystyle=\"true\" alttext=\"\\frac{7 \\times 7 - 1}{2}\"><mrow><mfrac displaystyle=\"true\"><mrow><mn>7</mn><mo>×</mo><mn>7</mn><mo>−</mo><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac></mrow></math>"
    ],
    "pathCount": 2
   },
@@ -66,6 +100,18 @@
     "1 * 2 * 3 * 4",
     "3 * 4 / 1 * 2",
     "(1 + 3) * (2 + 4)"
+   ],
+   "solutionsTex": [
+    "4 \\times (3 + 1 + 2)",
+    "1 \\times 2 \\times 3 \\times 4",
+    "\\frac{3 \\times 4}{1} \\times 2",
+    "(1 + 3) \\times (2 + 4)"
+   ],
+   "solutionsMath": [
+    "<math displaystyle=\"true\" alttext=\"4 \\times (3 + 1 + 2)\"><mrow><mn>4</mn><mo>×</mo><mo stretchy=\"false\">(</mo><mn>3</mn><mo>+</mo><mn>1</mn><mo>+</mo><mn>2</mn><mo stretchy=\"false\">)</mo></mrow></math>",
+    "<math displaystyle=\"true\" alttext=\"1 \\times 2 \\times 3 \\times 4\"><mrow><mn>1</mn><mo>×</mo><mn>2</mn><mo>×</mo><mn>3</mn><mo>×</mo><mn>4</mn></mrow></math>",
+    "<math displaystyle=\"true\" alttext=\"\\frac{3 \\times 4}{1} \\times 2\"><mrow><mfrac displaystyle=\"true\"><mrow><mn>3</mn><mo>×</mo><mn>4</mn></mrow><mrow><mn>1</mn></mrow></mfrac><mo>×</mo><mn>2</mn></mrow></math>",
+    "<math displaystyle=\"true\" alttext=\"(1 + 3) \\times (2 + 4)\"><mrow><mo stretchy=\"false\">(</mo><mn>1</mn><mo>+</mo><mn>3</mn><mo stretchy=\"false\">)</mo><mo>×</mo><mo stretchy=\"false\">(</mo><mn>2</mn><mo>+</mo><mn>4</mn><mo stretchy=\"false\">)</mo></mrow></math>"
    ],
    "pathCount": 292,
    "paths": [
@@ -1281,6 +1327,10 @@
      "ontoSlot": 0,
      "result": "8/3",
      "trace": "8 ÷ 3 = 8/3",
+     "traceMath": [
+      "<math displaystyle=\"true\" alttext=\"8 \\div 3\"><mrow><mn>8</mn><mo>÷</mo><mn>3</mn></mrow></math>",
+      "<math displaystyle=\"true\" alttext=\"\\frac{8}{3}\"><mrow><mfrac displaystyle=\"true\"><mrow><mn>8</mn></mrow><mrow><mn>3</mn></mrow></mfrac></mrow></math>"
+     ],
      "cardsAfter": [
       {
        "id": 2,
@@ -1313,6 +1363,10 @@
      "ontoSlot": 0,
      "result": "1/3",
      "trace": "3 − 8/3 = 1/3",
+     "traceMath": [
+      "<math displaystyle=\"true\" alttext=\"3 - \\frac{8}{3}\"><mrow><mn>3</mn><mo>−</mo><mfrac displaystyle=\"true\"><mrow><mn>8</mn></mrow><mrow><mn>3</mn></mrow></mfrac></mrow></math>",
+      "<math displaystyle=\"true\" alttext=\"\\frac{1}{3}\"><mrow><mfrac displaystyle=\"true\"><mrow><mn>1</mn></mrow><mrow><mn>3</mn></mrow></mfrac></mrow></math>"
+     ],
      "cardsAfter": [
       {
        "id": 3,
@@ -1338,6 +1392,10 @@
      "ontoSlot": 0,
      "result": "24",
      "trace": "8 ÷ 1/3 = 24",
+     "traceMath": [
+      "<math displaystyle=\"true\" alttext=\"8 \\div \\frac{1}{3}\"><mrow><mn>8</mn><mo>÷</mo><mfrac displaystyle=\"true\"><mrow><mn>1</mn></mrow><mrow><mn>3</mn></mrow></mfrac></mrow></math>",
+      "<math displaystyle=\"true\" alttext=\"24\"><mrow><mn>24</mn></mrow></math>"
+     ],
      "cardsAfter": [
       {
        "id": 102,
@@ -1390,6 +1448,10 @@
      "ontoSlot": 0,
      "result": "8",
      "trace": "6 + 2 = 8",
+     "traceMath": [
+      "<math displaystyle=\"true\" alttext=\"6 + 2\"><mrow><mn>6</mn><mo>+</mo><mn>2</mn></mrow></math>",
+      "<math displaystyle=\"true\" alttext=\"8\"><mrow><mn>8</mn></mrow></math>"
+     ],
      "cardsAfter": [
       {
        "id": 2,
@@ -1422,6 +1484,10 @@
      "ontoSlot": 0,
      "result": "24",
      "trace": "8 × 3 = 24",
+     "traceMath": [
+      "<math displaystyle=\"true\" alttext=\"8 \\times 3\"><mrow><mn>8</mn><mo>×</mo><mn>3</mn></mrow></math>",
+      "<math displaystyle=\"true\" alttext=\"24\"><mrow><mn>24</mn></mrow></math>"
+     ],
      "cardsAfter": [
       {
        "id": 2,
@@ -1447,6 +1513,10 @@
      "ontoSlot": 0,
      "result": "24",
      "trace": "24 × 1 = 24",
+     "traceMath": [
+      "<math displaystyle=\"true\" alttext=\"24 \\times 1\"><mrow><mn>24</mn><mo>×</mo><mn>1</mn></mrow></math>",
+      "<math displaystyle=\"true\" alttext=\"24\"><mrow><mn>24</mn></mrow></math>"
+     ],
      "cardsAfter": [
       {
        "id": 102,
@@ -1459,6 +1529,13 @@
     }
    ]
   }
+ },
+ "hint": {
+  "ids": [
+   1,
+   0
+  ],
+  "text": "体力 -1(使用提示)"
  },
  "history": [
   {
@@ -1501,9 +1578,12 @@
  ],
  "markdown": {
   "name": "24point_wrong_1793404800000.md",
-  "text": "# 24 Point Game History\n\n## Round 1\n- **Question**: 1,2,7,7\n- **Result**: Loss\n- **Solutions**:\n  - (7 * 7 - 1) / 2\n\n"
+  "text": "# 24 Point Game History\n\n## Round 1\n- **Question**: 1,2,7,7\n- **Result**: Loss\n- **Solutions**:\n  - $\\frac{7 \\times 7 - 1}{2}$\n\n",
+  "math": {
+   "\\frac{7 \\times 7 - 1}{2}": "<math displaystyle=\"true\" alttext=\"\\frac{7 \\times 7 - 1}{2}\"><mrow><mfrac displaystyle=\"true\"><mrow><mn>7</mn><mo>×</mo><mn>7</mn><mo>−</mo><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac></mrow></math>"
+  }
  },
- "printHtml": "\n        <!DOCTYPE html>\n        <html>\n        <head>\n            <title>24 Point Game Record</title>\n            <style>\n                body { font-family: 'Segoe UI', sans-serif; -webkit-print-color-adjust: exact; color: #333; }\n                h2 { text-align: center; border-bottom: 2px solid #333; padding-bottom: 10px; }\n                \n                /* 打印容器：两列网格 */\n                .print-container { \n                    display: grid; \n                    grid-template-columns: 1fr 1fr; \n                    gap: 20px; \n                    width: 100%;\n                }\n                \n                /* 单个题目卡片 */\n                .print-card { \n                    border: 1px solid #ccc; \n                    border-radius: 8px; \n                    padding: 15px; \n                    background: #f8f9fa;\n                    break-inside: avoid; /* 防止分页截断 */\n                }\n                \n                .header { \n                    display: flex; justify-content: space-between; \n                    border-bottom: 1px solid #ddd; padding-bottom: 5px; margin-bottom: 10px;\n                    font-weight: bold; font-size: 0.9em;\n                }\n                \n                /* 数字展示框 */\n                .nums-row { display: flex; gap: 10px; justify-content: center; margin: 15px 0; }\n                .num-box { \n                    width: 36px; height: 48px; \n                    border: 2px solid #333; border-radius: 4px;\n                    display: flex; align-items: center; justify-content: center; \n                    font-weight: bold; font-size: 1.2em; background: #fff;\n                }\n                \n                .solutions { font-family: monospace; font-size: 0.85em; color: #555; background: #eee; padding: 5px; border-radius: 4px;}\n                .win { color: green; } .loss { color: red; }\n                \n                @media print {\n                    @page { margin: 1cm; size: A4; }\n                }\n            </style>\n        </head>\n        <body>\n            <h2>24 Point Game History (All)</h2>\n            <div class=\"print-container\">\n                \n                    <div class=\"print-card\">\n                        <div class=\"header\">\n                            <span>Round 1</span>\n                            <span class=\"win\">WIN</span>\n                        </div>\n                        <div class=\"nums-row\">\n                            <div class=\"num-box\">3</div><div class=\"num-box\">8</div><div class=\"num-box\">3</div><div class=\"num-box\">8</div>\n                        </div>\n                        <div class=\"solutions\">\n                            <div><strong>Ref Solution:</strong></div>\n                            <div>• 8 / (3 - 8 / 3)</div>\n                        </div>\n                    </div>\n                \n                    <div class=\"print-card\">\n                        <div class=\"header\">\n                            <span>Round 2</span>\n                            <span class=\"win\">WIN</span>\n                        </div>\n                        <div class=\"nums-row\">\n                            <div class=\"num-box\">6</div><div class=\"num-box\">2</div><div class=\"num-box\">1</div><div class=\"num-box\">3</div>\n                        </div>\n                        <div class=\"solutions\">\n                            <div><strong>Ref Solution:</strong></div>\n                            <div>• (6 + 2) * 1 * 3</div><div>• (6 + 2) / 1 * 3</div><div>• 6 * 2 * (3 - 1)</div>\n                        </div>\n                    </div>\n                \n                    <div class=\"print-card\">\n                        <div class=\"header\">\n                            <span>Round 3</span>\n                            <span class=\"win\">WIN</span>\n                        </div>\n                        <div class=\"nums-row\">\n                            <div class=\"num-box\">1</div><div class=\"num-box\">1</div><div class=\"num-box\">2</div><div class=\"num-box\">5</div>\n                        </div>\n                        <div class=\"solutions\">\n                            <div><strong>Ref Solution:</strong></div>\n                            No Solution\n                        </div>\n                    </div>\n                \n                    <div class=\"print-card\">\n                        <div class=\"header\">\n                            <span>Round 4</span>\n                            <span class=\"loss\">LOSS</span>\n                        </div>\n                        <div class=\"nums-row\">\n                            <div class=\"num-box\">1</div><div class=\"num-box\">2</div><div class=\"num-box\">7</div><div class=\"num-box\">7</div>\n                        </div>\n                        <div class=\"solutions\">\n                            <div><strong>Ref Solution:</strong></div>\n                            <div>• (7 * 7 - 1) / 2</div>\n                        </div>\n                    </div>\n                \n            </div>\n            <script>\n                // 页面加载完成后自动触发打印\n                window.onload = () => { setTimeout(() => window.print(), 500); };\n            </script>\n        </body>\n        </html>\n    ",
+ "printHtml": "\n        <!DOCTYPE html>\n        <html>\n        <head>\n            <title>24 Point Game Record</title>\n            <style>\n                body { font-family: 'Segoe UI', sans-serif; -webkit-print-color-adjust: exact; color: #333; }\n                h2 { text-align: center; border-bottom: 2px solid #333; padding-bottom: 10px; }\n                \n                /* 打印容器：两列网格 */\n                .print-container { \n                    display: grid; \n                    grid-template-columns: 1fr 1fr; \n                    gap: 20px; \n                    width: 100%;\n                }\n                \n                /* 单个题目卡片 */\n                .print-card { \n                    border: 1px solid #ccc; \n                    border-radius: 8px; \n                    padding: 15px; \n                    background: #f8f9fa;\n                    break-inside: avoid; /* 防止分页截断 */\n                }\n                \n                .header { \n                    display: flex; justify-content: space-between; \n                    border-bottom: 1px solid #ddd; padding-bottom: 5px; margin-bottom: 10px;\n                    font-weight: bold; font-size: 0.9em;\n                }\n                \n                /* 数字展示框 */\n                .nums-row { display: flex; gap: 10px; justify-content: center; margin: 15px 0; }\n                .num-box { \n                    width: 36px; height: 48px; \n                    border: 2px solid #333; border-radius: 4px;\n                    display: flex; align-items: center; justify-content: center; \n                    font-weight: bold; font-size: 1.2em; background: #fff;\n                }\n                \n                .solutions { font-size: 0.85em; color: #555; background: #eee; padding: 5px 8px; border-radius: 4px;}\n                .solutions .sol { margin: 4px 0; font-size: 1.15em; color: #333; }\n                math { font-family: \"Latin Modern Math\", \"STIX Two Math\", \"Cambria Math\", \"Noto Sans Math\", math; }\n                .win { color: green; } .loss { color: red; }\n                \n                @media print {\n                    @page { margin: 1cm; size: A4; }\n                }\n            </style>\n        </head>\n        <body>\n            <h2>24 Point Game History (All)</h2>\n            <div class=\"print-container\">\n                \n                    <div class=\"print-card\">\n                        <div class=\"header\">\n                            <span>Round 1</span>\n                            <span class=\"win\">WIN</span>\n                        </div>\n                        <div class=\"nums-row\">\n                            <div class=\"num-box\">3</div><div class=\"num-box\">8</div><div class=\"num-box\">3</div><div class=\"num-box\">8</div>\n                        </div>\n                        <div class=\"solutions\">\n                            <div><strong>Ref Solution:</strong></div>\n                            <div class=\"sol\">• <math displaystyle=\"true\" alttext=\"\\frac{8}{3 - \\frac{8}{3}}\"><mrow><mfrac displaystyle=\"true\"><mrow><mn>8</mn></mrow><mrow><mn>3</mn><mo>−</mo><mfrac displaystyle=\"true\"><mrow><mn>8</mn></mrow><mrow><mn>3</mn></mrow></mfrac></mrow></mfrac></mrow></math></div>\n                        </div>\n                    </div>\n                \n                    <div class=\"print-card\">\n                        <div class=\"header\">\n                            <span>Round 2</span>\n                            <span class=\"win\">WIN</span>\n                        </div>\n                        <div class=\"nums-row\">\n                            <div class=\"num-box\">6</div><div class=\"num-box\">2</div><div class=\"num-box\">1</div><div class=\"num-box\">3</div>\n                        </div>\n                        <div class=\"solutions\">\n                            <div><strong>Ref Solution:</strong></div>\n                            <div class=\"sol\">• <math displaystyle=\"true\" alttext=\"(6 + 2) \\times 1 \\times 3\"><mrow><mo stretchy=\"false\">(</mo><mn>6</mn><mo>+</mo><mn>2</mn><mo stretchy=\"false\">)</mo><mo>×</mo><mn>1</mn><mo>×</mo><mn>3</mn></mrow></math></div><div class=\"sol\">• <math displaystyle=\"true\" alttext=\"\\frac{6 + 2}{1} \\times 3\"><mrow><mfrac displaystyle=\"true\"><mrow><mn>6</mn><mo>+</mo><mn>2</mn></mrow><mrow><mn>1</mn></mrow></mfrac><mo>×</mo><mn>3</mn></mrow></math></div><div class=\"sol\">• <math displaystyle=\"true\" alttext=\"6 \\times 2 \\times (3 - 1)\"><mrow><mn>6</mn><mo>×</mo><mn>2</mn><mo>×</mo><mo stretchy=\"false\">(</mo><mn>3</mn><mo>−</mo><mn>1</mn><mo stretchy=\"false\">)</mo></mrow></math></div>\n                        </div>\n                    </div>\n                \n                    <div class=\"print-card\">\n                        <div class=\"header\">\n                            <span>Round 3</span>\n                            <span class=\"win\">WIN</span>\n                        </div>\n                        <div class=\"nums-row\">\n                            <div class=\"num-box\">1</div><div class=\"num-box\">1</div><div class=\"num-box\">2</div><div class=\"num-box\">5</div>\n                        </div>\n                        <div class=\"solutions\">\n                            <div><strong>Ref Solution:</strong></div>\n                            No Solution\n                        </div>\n                    </div>\n                \n                    <div class=\"print-card\">\n                        <div class=\"header\">\n                            <span>Round 4</span>\n                            <span class=\"loss\">LOSS</span>\n                        </div>\n                        <div class=\"nums-row\">\n                            <div class=\"num-box\">1</div><div class=\"num-box\">2</div><div class=\"num-box\">7</div><div class=\"num-box\">7</div>\n                        </div>\n                        <div class=\"solutions\">\n                            <div><strong>Ref Solution:</strong></div>\n                            <div class=\"sol\">• <math displaystyle=\"true\" alttext=\"\\frac{7 \\times 7 - 1}{2}\"><mrow><mfrac displaystyle=\"true\"><mrow><mn>7</mn><mo>×</mo><mn>7</mn><mo>−</mo><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac></mrow></math></div>\n                        </div>\n                    </div>\n                \n            </div>\n            <script>\n                // 页面加载完成后自动触发打印\n                window.onload = () => { setTimeout(() => window.print(), 500); };\n            </script>\n        </body>\n        </html>\n    ",
  "themes": [
   {
    "id": "glass",

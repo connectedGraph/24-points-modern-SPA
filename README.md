@@ -23,7 +23,9 @@ A premium, responsive, and feature-rich 24-Point Math Game built as a zero-depen
 *   **Dynamic Drag and Drop Interaction**: A physical-feeling card collision mechanic. Drag numbers together and press W/A/S/D keys to trigger arithmetic operations (+, -, *, /).
 *   **Premium Glassmorphic Themes**: Toggle between 6 curated visual aesthetics including Glass, Paper, Bamboo, Leather, Dark, and Plain White.
 *   **Comprehensive I18n**: Fully localized user interface with support for English, Chinese, Spanish, German, and French.
-*   **History and PDF Export**: Track performance, review history, export logs as Markdown, and print cheat-sheets or wrong-question sets directly.
+*   **Hint System**: Tap 💡 and the game picks a reference solution, finds the two cards to merge first (deepest first move, multiplication/division winning ties) and pulses them for 2 seconds; it costs 1 stamina, once per level.
+*   **Typeset Formulas (LaTeX → MathML)**: Number cards, reference solutions, calculator results, history lines and printed sheets all go through a hand-written LaTeX → MathML pipeline, so `8 / 3` becomes a real stacked fraction instead of a slash on one line. Zero dependencies, no web font download.
+*   **History and PDF Export**: Track performance, review history, export logs as Markdown (solutions written as inline `$\LaTeX$`), and print cheat-sheets or wrong-question sets directly.
 
 ---
 
@@ -144,7 +146,9 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 *   **动态拖拽交互**：拟真的卡片碰撞机制。将数字拖拽在一起，并在拖拽过程中按下 W/A/S/D 键来决定加减乘除运算。
 *   **高端毛玻璃主题**：支持 6 套精心设计的视觉主题切换，包括毛玻璃、纸质、竹风、皮革、暗黑和极简白。
 *   **完整多语言支持**：完整的国际化本地界面，支持英文、中文、西班牙文、德文和法文。
-*   **记录与 PDF 导出**：跟踪游戏表现、查看历史记录、将日志导出为 Markdown，并能直接打印通关指南和错题集。
+*   **公式排版（LaTeX → MathML）**：卡面、参考答案、计算器结果、历史记录和打印页里的算式都走内置的 LaTeX → MathML 排版，`8 / 3` 排成上下两层的真分数，而不是一行斜杠。零依赖，不用联网加载数学字体。
+*   **提示系统**：卡住时点一下 💡，会按参考解高亮「该先合并」的两张牌（扣 1 点体力，每关只扣一次）。
+*   **记录与 PDF 导出**：跟踪游戏表现、查看历史记录、将日志导出为 Markdown（解写成行内 `$\LaTeX$`），并能直接打印通关指南和错题集。
 
 ---
 
