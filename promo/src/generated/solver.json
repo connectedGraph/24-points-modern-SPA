@@ -1,0 +1,1566 @@
+{
+ "generatedFrom": "script.js",
+ "puzzles": {
+  "hook": {
+   "nums": [
+    3,
+    8,
+    3,
+    8
+   ],
+   "solutions": [
+    "8 / (3 - 8 / 3)"
+   ],
+   "pathCount": 4
+  },
+  "speed": {
+   "nums": [
+    6,
+    2,
+    1,
+    3
+   ],
+   "solutions": [
+    "(6 + 2) * 1 * 3",
+    "(6 + 2) / 1 * 3",
+    "6 * 2 * (3 - 1)",
+    "3 * (2 + 6 * 1)",
+    "3 * (2 + 6 / 1)",
+    "6 * (3 + 2 - 1)",
+    "3 * (6 + 2 * 1)",
+    "3 * (6 + 2 / 1)"
+   ],
+   "pathCount": 110
+  },
+  "noSolution": {
+   "nums": [
+    1,
+    1,
+    2,
+    5
+   ],
+   "solutions": [],
+   "pathCount": 0
+  },
+  "timeout": {
+   "nums": [
+    1,
+    2,
+    7,
+    7
+   ],
+   "solutions": [
+    "(7 * 7 - 1) / 2"
+   ],
+   "pathCount": 2
+  },
+  "calc": {
+   "nums": [
+    1,
+    2,
+    3,
+    4
+   ],
+   "solutions": [
+    "4 * (3 + 1 + 2)",
+    "1 * 2 * 3 * 4",
+    "3 * 4 / 1 * 2",
+    "(1 + 3) * (2 + 4)"
+   ],
+   "pathCount": 292,
+   "paths": [
+    {
+     "exp": "4 * (3 + 1 + 2)",
+     "key": "(MUL*(ADD+1+2+3)*4)"
+    },
+    {
+     "exp": "(3 + 1 + 2) * 4",
+     "key": "(MUL*(ADD+1+2+3)*4)"
+    },
+    {
+     "exp": "4 * (1 + 2 + 3)",
+     "key": "(MUL*(ADD+1+2+3)*4)"
+    },
+    {
+     "exp": "(1 + 2 + 3) * 4",
+     "key": "(MUL*(ADD+1+2+3)*4)"
+    },
+    {
+     "exp": "1 * 2 * 3 * 4",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "3 * 4 * 1 * 2",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "4 * 3 * 1 * 2",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "3 * 1 * 2 * 4",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "1 * 2 * 4 * 3",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "4 * 3 * 1 * 2",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "3 * 4 * 1 * 2",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "4 * 1 * 2 * 3",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "4 * 1 * 2 * 3",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "1 * 2 * 3 * 4",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "3 * 1 * 2 * 4",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "1 * 2 * 4 * 3",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "3 * 4 / 1 * 2",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "4 * 3 / 1 * 2",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "3 / 1 * 2 * 4",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "4 * 3 / 1 * 2",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "3 * 4 / 1 * 2",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "4 / 1 * 2 * 3",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "4 / 1 * 2 * 3",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "3 / 1 * 2 * 4",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "(1 + 3) * (2 + 4)",
+     "key": "(MUL*(ADD+1+3)*(ADD+2+4))"
+    },
+    {
+     "exp": "(2 + 4) * (1 + 3)",
+     "key": "(MUL*(ADD+1+3)*(ADD+2+4))"
+    },
+    {
+     "exp": "4 * (2 + 1 + 3)",
+     "key": "(MUL*(ADD+1+2+3)*4)"
+    },
+    {
+     "exp": "(2 + 1 + 3) * 4",
+     "key": "(MUL*(ADD+1+2+3)*4)"
+    },
+    {
+     "exp": "(1 + 3) * (4 + 2)",
+     "key": "(MUL*(ADD+1+3)*(ADD+2+4))"
+    },
+    {
+     "exp": "(4 + 2) * (1 + 3)",
+     "key": "(MUL*(ADD+1+3)*(ADD+2+4))"
+    },
+    {
+     "exp": "4 * (1 + 3 + 2)",
+     "key": "(MUL*(ADD+1+2+3)*4)"
+    },
+    {
+     "exp": "(1 + 3 + 2) * 4",
+     "key": "(MUL*(ADD+1+2+3)*4)"
+    },
+    {
+     "exp": "1 * 3 * 2 * 4",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "2 * 4 * 1 * 3",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "4 * 2 * 1 * 3",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "2 * 1 * 3 * 4",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "1 * 3 * 4 * 2",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "4 * 2 * 1 * 3",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "2 * 4 * 1 * 3",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "4 * 1 * 3 * 2",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "4 * 1 * 3 * 2",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "1 * 3 * 2 * 4",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "2 * 1 * 3 * 4",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "1 * 3 * 4 * 2",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "2 * 4 / 1 * 3",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "4 * 2 / 1 * 3",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "2 / 1 * 3 * 4",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "4 * 2 / 1 * 3",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "2 * 4 / 1 * 3",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "4 / 1 * 3 * 2",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "4 / 1 * 3 * 2",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "2 / 1 * 3 * 4",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "1 * 4 * 2 * 3",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "2 * 3 * 1 * 4",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "3 * 2 * 1 * 4",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "2 * 1 * 4 * 3",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "1 * 4 * 3 * 2",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "3 * 2 * 1 * 4",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "2 * 3 * 1 * 4",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "3 * 1 * 4 * 2",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "3 * 1 * 4 * 2",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "1 * 4 * 2 * 3",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "2 * 1 * 4 * 3",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "1 * 4 * 3 * 2",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "2 * 3 / 1 * 4",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "3 * 2 / 1 * 4",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "2 / 1 * 4 * 3",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "3 * 2 / 1 * 4",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "2 * 3 / 1 * 4",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "3 / 1 * 4 * 2",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "3 / 1 * 4 * 2",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "2 / 1 * 4 * 3",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "4 * (3 + 2 + 1)",
+     "key": "(MUL*(ADD+1+2+3)*4)"
+    },
+    {
+     "exp": "(3 + 2 + 1) * 4",
+     "key": "(MUL*(ADD+1+2+3)*4)"
+    },
+    {
+     "exp": "4 * (2 + 1 + 3)",
+     "key": "(MUL*(ADD+1+2+3)*4)"
+    },
+    {
+     "exp": "(2 + 1 + 3) * 4",
+     "key": "(MUL*(ADD+1+2+3)*4)"
+    },
+    {
+     "exp": "2 * 1 * 3 * 4",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "3 * 4 * 2 * 1",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "4 * 3 * 2 * 1",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "3 * 2 * 1 * 4",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "2 * 1 * 4 * 3",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "4 * 3 * 2 * 1",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "3 * 4 * 2 * 1",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "4 * 2 * 1 * 3",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "4 * 2 * 1 * 3",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "2 * 1 * 3 * 4",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "3 * 2 * 1 * 4",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "2 * 1 * 4 * 3",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "2 / 1 * 3 * 4",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "3 * 4 * 2 / 1",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "4 * 3 * 2 / 1",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "3 * 2 / 1 * 4",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "2 / 1 * 4 * 3",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "4 * 3 * 2 / 1",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "3 * 4 * 2 / 1",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "4 * 2 / 1 * 3",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "4 * 2 / 1 * 3",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "2 / 1 * 3 * 4",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "3 * 2 / 1 * 4",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "2 / 1 * 4 * 3",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "4 * (1 + 2 + 3)",
+     "key": "(MUL*(ADD+1+2+3)*4)"
+    },
+    {
+     "exp": "(1 + 2 + 3) * 4",
+     "key": "(MUL*(ADD+1+2+3)*4)"
+    },
+    {
+     "exp": "4 * (2 + 3 + 1)",
+     "key": "(MUL*(ADD+1+2+3)*4)"
+    },
+    {
+     "exp": "(2 + 3 + 1) * 4",
+     "key": "(MUL*(ADD+1+2+3)*4)"
+    },
+    {
+     "exp": "2 * 3 * 1 * 4",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "1 * 4 * 2 * 3",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "2 * 3 / 1 * 4",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "4 * 1 * 2 * 3",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "1 * 2 * 3 * 4",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "4 / 1 * 2 * 3",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "2 * 3 * 4 * 1",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "4 * 1 * 2 * 3",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "2 * 3 * 4 / 1",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "4 / 1 * 2 * 3",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "1 * 4 * 2 * 3",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "4 * 2 * 3 * 1",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "4 * 2 * 3 / 1",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "4 * 2 * 3 * 1",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "2 * 3 * 1 * 4",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "4 * 2 * 3 / 1",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "2 * 3 / 1 * 4",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "1 * 2 * 3 * 4",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "2 * 3 * 4 * 1",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "2 * 3 * 4 / 1",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "(2 + 4) * (1 + 3)",
+     "key": "(MUL*(ADD+1+3)*(ADD+2+4))"
+    },
+    {
+     "exp": "(1 + 3) * (2 + 4)",
+     "key": "(MUL*(ADD+1+3)*(ADD+2+4))"
+    },
+    {
+     "exp": "(2 + 4) * (3 + 1)",
+     "key": "(MUL*(ADD+1+3)*(ADD+2+4))"
+    },
+    {
+     "exp": "(3 + 1) * (2 + 4)",
+     "key": "(MUL*(ADD+1+3)*(ADD+2+4))"
+    },
+    {
+     "exp": "2 * 4 * 1 * 3",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "1 * 3 * 2 * 4",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "2 * 4 / 1 * 3",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "3 * 1 * 2 * 4",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "1 * 2 * 4 * 3",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "3 / 1 * 2 * 4",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "2 * 4 * 3 * 1",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "3 * 1 * 2 * 4",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "2 * 4 * 3 / 1",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "3 / 1 * 2 * 4",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "1 * 3 * 2 * 4",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "3 * 2 * 4 * 1",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "3 * 2 * 4 / 1",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "3 * 2 * 4 * 1",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "2 * 4 * 1 * 3",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "3 * 2 * 4 / 1",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "2 * 4 / 1 * 3",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "1 * 2 * 4 * 3",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "2 * 4 * 3 * 1",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "2 * 4 * 3 / 1",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "(3 + 1) * (2 + 4)",
+     "key": "(MUL*(ADD+1+3)*(ADD+2+4))"
+    },
+    {
+     "exp": "(2 + 4) * (3 + 1)",
+     "key": "(MUL*(ADD+1+3)*(ADD+2+4))"
+    },
+    {
+     "exp": "4 * (2 + 3 + 1)",
+     "key": "(MUL*(ADD+1+2+3)*4)"
+    },
+    {
+     "exp": "(2 + 3 + 1) * 4",
+     "key": "(MUL*(ADD+1+2+3)*4)"
+    },
+    {
+     "exp": "(3 + 1) * (4 + 2)",
+     "key": "(MUL*(ADD+1+3)*(ADD+2+4))"
+    },
+    {
+     "exp": "(4 + 2) * (3 + 1)",
+     "key": "(MUL*(ADD+1+3)*(ADD+2+4))"
+    },
+    {
+     "exp": "4 * (3 + 1 + 2)",
+     "key": "(MUL*(ADD+1+2+3)*4)"
+    },
+    {
+     "exp": "(3 + 1 + 2) * 4",
+     "key": "(MUL*(ADD+1+2+3)*4)"
+    },
+    {
+     "exp": "3 * 1 * 2 * 4",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "2 * 4 * 3 * 1",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "4 * 2 * 3 * 1",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "2 * 3 * 1 * 4",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "3 * 1 * 4 * 2",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "4 * 2 * 3 * 1",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "2 * 4 * 3 * 1",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "4 * 3 * 1 * 2",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "4 * 3 * 1 * 2",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "3 * 1 * 2 * 4",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "2 * 3 * 1 * 4",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "3 * 1 * 4 * 2",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "3 / 1 * 2 * 4",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "2 * 4 * 3 / 1",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "4 * 2 * 3 / 1",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "2 * 3 / 1 * 4",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "3 / 1 * 4 * 2",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "4 * 2 * 3 / 1",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "2 * 4 * 3 / 1",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "4 * 3 / 1 * 2",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "4 * 3 / 1 * 2",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "3 / 1 * 2 * 4",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "2 * 3 / 1 * 4",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "3 / 1 * 4 * 2",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "4 * (1 + 3 + 2)",
+     "key": "(MUL*(ADD+1+2+3)*4)"
+    },
+    {
+     "exp": "(1 + 3 + 2) * 4",
+     "key": "(MUL*(ADD+1+2+3)*4)"
+    },
+    {
+     "exp": "4 * (3 + 2 + 1)",
+     "key": "(MUL*(ADD+1+2+3)*4)"
+    },
+    {
+     "exp": "(3 + 2 + 1) * 4",
+     "key": "(MUL*(ADD+1+2+3)*4)"
+    },
+    {
+     "exp": "3 * 2 * 1 * 4",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "1 * 4 * 3 * 2",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "3 * 2 / 1 * 4",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "4 * 1 * 3 * 2",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "1 * 3 * 2 * 4",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "4 / 1 * 3 * 2",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "3 * 2 * 4 * 1",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "4 * 1 * 3 * 2",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "3 * 2 * 4 / 1",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "4 / 1 * 3 * 2",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "1 * 4 * 3 * 2",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "4 * 3 * 2 * 1",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "4 * 3 * 2 / 1",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "4 * 3 * 2 * 1",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "3 * 2 * 1 * 4",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "4 * 3 * 2 / 1",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "3 * 2 / 1 * 4",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "1 * 3 * 2 * 4",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "3 * 2 * 4 * 1",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "3 * 2 * 4 / 1",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "3 * 4 * 1 * 2",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "1 * 2 * 3 * 4",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "3 * 4 / 1 * 2",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "2 * 1 * 3 * 4",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "1 * 3 * 4 * 2",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "2 / 1 * 3 * 4",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "3 * 4 * 2 * 1",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "2 * 1 * 3 * 4",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "3 * 4 * 2 / 1",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "2 / 1 * 3 * 4",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "1 * 2 * 3 * 4",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "2 * 3 * 4 * 1",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "2 * 3 * 4 / 1",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "2 * 3 * 4 * 1",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "3 * 4 * 1 * 2",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "2 * 3 * 4 / 1",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "3 * 4 / 1 * 2",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "1 * 3 * 4 * 2",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "3 * 4 * 2 * 1",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "3 * 4 * 2 / 1",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "4 * 1 * 2 * 3",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "2 * 3 * 4 * 1",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "3 * 2 * 4 * 1",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "2 * 4 * 1 * 3",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "4 * 1 * 3 * 2",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "3 * 2 * 4 * 1",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "2 * 3 * 4 * 1",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "3 * 4 * 1 * 2",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "3 * 4 * 1 * 2",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "4 * 1 * 2 * 3",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "2 * 4 * 1 * 3",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "4 * 1 * 3 * 2",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "4 / 1 * 2 * 3",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "2 * 3 * 4 / 1",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "3 * 2 * 4 / 1",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "2 * 4 / 1 * 3",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "4 / 1 * 3 * 2",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "3 * 2 * 4 / 1",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "2 * 3 * 4 / 1",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "3 * 4 / 1 * 2",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "3 * 4 / 1 * 2",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "4 / 1 * 2 * 3",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "2 * 4 / 1 * 3",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "4 / 1 * 3 * 2",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "(4 + 2) * (1 + 3)",
+     "key": "(MUL*(ADD+1+3)*(ADD+2+4))"
+    },
+    {
+     "exp": "(1 + 3) * (4 + 2)",
+     "key": "(MUL*(ADD+1+3)*(ADD+2+4))"
+    },
+    {
+     "exp": "(4 + 2) * (3 + 1)",
+     "key": "(MUL*(ADD+1+3)*(ADD+2+4))"
+    },
+    {
+     "exp": "(3 + 1) * (4 + 2)",
+     "key": "(MUL*(ADD+1+3)*(ADD+2+4))"
+    },
+    {
+     "exp": "4 * 2 * 1 * 3",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "1 * 3 * 4 * 2",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "4 * 2 / 1 * 3",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "3 * 1 * 4 * 2",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "1 * 4 * 2 * 3",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "3 / 1 * 4 * 2",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "4 * 2 * 3 * 1",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "3 * 1 * 4 * 2",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "4 * 2 * 3 / 1",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "3 / 1 * 4 * 2",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "1 * 3 * 4 * 2",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "3 * 4 * 2 * 1",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "3 * 4 * 2 / 1",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "3 * 4 * 2 * 1",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "4 * 2 * 1 * 3",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "3 * 4 * 2 / 1",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "4 * 2 / 1 * 3",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "1 * 4 * 2 * 3",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "4 * 2 * 3 * 1",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "4 * 2 * 3 / 1",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "4 * 3 * 1 * 2",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "1 * 2 * 4 * 3",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "4 * 3 / 1 * 2",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "2 * 1 * 4 * 3",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "1 * 4 * 3 * 2",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "2 / 1 * 4 * 3",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "4 * 3 * 2 * 1",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "2 * 1 * 4 * 3",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "4 * 3 * 2 / 1",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "2 / 1 * 4 * 3",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "1 * 2 * 4 * 3",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "2 * 4 * 3 * 1",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "2 * 4 * 3 / 1",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "2 * 4 * 3 * 1",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "4 * 3 * 1 * 2",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "2 * 4 * 3 / 1",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "4 * 3 / 1 * 2",
+     "key": "(MUL*2*3*4/1)"
+    },
+    {
+     "exp": "1 * 4 * 3 * 2",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "4 * 3 * 2 * 1",
+     "key": "(MUL*1*2*3*4)"
+    },
+    {
+     "exp": "4 * 3 * 2 / 1",
+     "key": "(MUL*2*3*4/1)"
+    }
+   ]
+  }
+ },
+ "merges": {
+  "hook": {
+   "start": [
+    {
+     "id": 0,
+     "n": 3,
+     "d": 1,
+     "slot": 0,
+     "text": "3"
+    },
+    {
+     "id": 1,
+     "n": 8,
+     "d": 1,
+     "slot": 1,
+     "text": "8"
+    },
+    {
+     "id": 2,
+     "n": 3,
+     "d": 1,
+     "slot": 2,
+     "text": "3"
+    },
+    {
+     "id": 3,
+     "n": 8,
+     "d": 1,
+     "slot": 3,
+     "text": "8"
+    }
+   ],
+   "steps": [
+    {
+     "drag": 1,
+     "onto": 0,
+     "key": "s",
+     "dragSlot": 1,
+     "ontoSlot": 0,
+     "result": "8/3",
+     "trace": "8 ÷ 3 = 8/3",
+     "cardsAfter": [
+      {
+       "id": 2,
+       "n": 3,
+       "d": 1,
+       "slot": 2,
+       "text": "3"
+      },
+      {
+       "id": 3,
+       "n": 8,
+       "d": 1,
+       "slot": 3,
+       "text": "8"
+      },
+      {
+       "id": 100,
+       "n": 8,
+       "d": 3,
+       "slot": 0,
+       "text": "8/3"
+      }
+     ]
+    },
+    {
+     "drag": 2,
+     "onto": 100,
+     "key": "d",
+     "dragSlot": 2,
+     "ontoSlot": 0,
+     "result": "1/3",
+     "trace": "3 − 8/3 = 1/3",
+     "cardsAfter": [
+      {
+       "id": 3,
+       "n": 8,
+       "d": 1,
+       "slot": 3,
+       "text": "8"
+      },
+      {
+       "id": 101,
+       "n": 1,
+       "d": 3,
+       "slot": 0,
+       "text": "1/3"
+      }
+     ]
+    },
+    {
+     "drag": 3,
+     "onto": 101,
+     "key": "s",
+     "dragSlot": 3,
+     "ontoSlot": 0,
+     "result": "24",
+     "trace": "8 ÷ 1/3 = 24",
+     "cardsAfter": [
+      {
+       "id": 102,
+       "n": 24,
+       "d": 1,
+       "slot": 0,
+       "text": "24"
+      }
+     ]
+    }
+   ]
+  },
+  "speed": {
+   "start": [
+    {
+     "id": 0,
+     "n": 6,
+     "d": 1,
+     "slot": 0,
+     "text": "6"
+    },
+    {
+     "id": 1,
+     "n": 2,
+     "d": 1,
+     "slot": 1,
+     "text": "2"
+    },
+    {
+     "id": 2,
+     "n": 1,
+     "d": 1,
+     "slot": 2,
+     "text": "1"
+    },
+    {
+     "id": 3,
+     "n": 3,
+     "d": 1,
+     "slot": 3,
+     "text": "3"
+    }
+   ],
+   "steps": [
+    {
+     "drag": 1,
+     "onto": 0,
+     "key": "a",
+     "dragSlot": 1,
+     "ontoSlot": 0,
+     "result": "8",
+     "trace": "6 + 2 = 8",
+     "cardsAfter": [
+      {
+       "id": 2,
+       "n": 1,
+       "d": 1,
+       "slot": 2,
+       "text": "1"
+      },
+      {
+       "id": 3,
+       "n": 3,
+       "d": 1,
+       "slot": 3,
+       "text": "3"
+      },
+      {
+       "id": 100,
+       "n": 8,
+       "d": 1,
+       "slot": 0,
+       "text": "8"
+      }
+     ]
+    },
+    {
+     "drag": 3,
+     "onto": 100,
+     "key": "w",
+     "dragSlot": 3,
+     "ontoSlot": 0,
+     "result": "24",
+     "trace": "8 × 3 = 24",
+     "cardsAfter": [
+      {
+       "id": 2,
+       "n": 1,
+       "d": 1,
+       "slot": 2,
+       "text": "1"
+      },
+      {
+       "id": 101,
+       "n": 24,
+       "d": 1,
+       "slot": 0,
+       "text": "24"
+      }
+     ]
+    },
+    {
+     "drag": 2,
+     "onto": 101,
+     "key": "w",
+     "dragSlot": 2,
+     "ontoSlot": 0,
+     "result": "24",
+     "trace": "24 × 1 = 24",
+     "cardsAfter": [
+      {
+       "id": 102,
+       "n": 24,
+       "d": 1,
+       "slot": 0,
+       "text": "24"
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "history": [
+  {
+   "q": "3,8,3,8",
+   "res": "Win",
+   "success": true,
+   "sols": [
+    "8 / (3 - 8 / 3)"
+   ]
+  },
+  {
+   "q": "6,2,1,3",
+   "res": "Win",
+   "success": true,
+   "sols": [
+    "(6 + 2) * 1 * 3",
+    "(6 + 2) / 1 * 3",
+    "6 * 2 * (3 - 1)",
+    "3 * (2 + 6 * 1)",
+    "3 * (2 + 6 / 1)",
+    "6 * (3 + 2 - 1)",
+    "3 * (6 + 2 * 1)",
+    "3 * (6 + 2 / 1)"
+   ]
+  },
+  {
+   "q": "1,1,2,5",
+   "res": "Win",
+   "success": true,
+   "sols": []
+  },
+  {
+   "q": "1,2,7,7",
+   "res": "Loss",
+   "success": false,
+   "sols": [
+    "(7 * 7 - 1) / 2"
+   ]
+  }
+ ],
+ "markdown": {
+  "name": "24point_wrong_1793404800000.md",
+  "text": "# 24 Point Game History\n\n## Round 1\n- **Question**: 1,2,7,7\n- **Result**: Loss\n- **Solutions**:\n  - (7 * 7 - 1) / 2\n\n"
+ },
+ "printHtml": "\n        <!DOCTYPE html>\n        <html>\n        <head>\n            <title>24 Point Game Record</title>\n            <style>\n                body { font-family: 'Segoe UI', sans-serif; -webkit-print-color-adjust: exact; color: #333; }\n                h2 { text-align: center; border-bottom: 2px solid #333; padding-bottom: 10px; }\n                \n                /* 打印容器：两列网格 */\n                .print-container { \n                    display: grid; \n                    grid-template-columns: 1fr 1fr; \n                    gap: 20px; \n                    width: 100%;\n                }\n                \n                /* 单个题目卡片 */\n                .print-card { \n                    border: 1px solid #ccc; \n                    border-radius: 8px; \n                    padding: 15px; \n                    background: #f8f9fa;\n                    break-inside: avoid; /* 防止分页截断 */\n                }\n                \n                .header { \n                    display: flex; justify-content: space-between; \n                    border-bottom: 1px solid #ddd; padding-bottom: 5px; margin-bottom: 10px;\n                    font-weight: bold; font-size: 0.9em;\n                }\n                \n                /* 数字展示框 */\n                .nums-row { display: flex; gap: 10px; justify-content: center; margin: 15px 0; }\n                .num-box { \n                    width: 36px; height: 48px; \n                    border: 2px solid #333; border-radius: 4px;\n                    display: flex; align-items: center; justify-content: center; \n                    font-weight: bold; font-size: 1.2em; background: #fff;\n                }\n                \n                .solutions { font-family: monospace; font-size: 0.85em; color: #555; background: #eee; padding: 5px; border-radius: 4px;}\n                .win { color: green; } .loss { color: red; }\n                \n                @media print {\n                    @page { margin: 1cm; size: A4; }\n                }\n            </style>\n        </head>\n        <body>\n            <h2>24 Point Game History (All)</h2>\n            <div class=\"print-container\">\n                \n                    <div class=\"print-card\">\n                        <div class=\"header\">\n                            <span>Round 1</span>\n                            <span class=\"win\">WIN</span>\n                        </div>\n                        <div class=\"nums-row\">\n                            <div class=\"num-box\">3</div><div class=\"num-box\">8</div><div class=\"num-box\">3</div><div class=\"num-box\">8</div>\n                        </div>\n                        <div class=\"solutions\">\n                            <div><strong>Ref Solution:</strong></div>\n                            <div>• 8 / (3 - 8 / 3)</div>\n                        </div>\n                    </div>\n                \n                    <div class=\"print-card\">\n                        <div class=\"header\">\n                            <span>Round 2</span>\n                            <span class=\"win\">WIN</span>\n                        </div>\n                        <div class=\"nums-row\">\n                            <div class=\"num-box\">6</div><div class=\"num-box\">2</div><div class=\"num-box\">1</div><div class=\"num-box\">3</div>\n                        </div>\n                        <div class=\"solutions\">\n                            <div><strong>Ref Solution:</strong></div>\n                            <div>• (6 + 2) * 1 * 3</div><div>• (6 + 2) / 1 * 3</div><div>• 6 * 2 * (3 - 1)</div>\n                        </div>\n                    </div>\n                \n                    <div class=\"print-card\">\n                        <div class=\"header\">\n                            <span>Round 3</span>\n                            <span class=\"win\">WIN</span>\n                        </div>\n                        <div class=\"nums-row\">\n                            <div class=\"num-box\">1</div><div class=\"num-box\">1</div><div class=\"num-box\">2</div><div class=\"num-box\">5</div>\n                        </div>\n                        <div class=\"solutions\">\n                            <div><strong>Ref Solution:</strong></div>\n                            No Solution\n                        </div>\n                    </div>\n                \n                    <div class=\"print-card\">\n                        <div class=\"header\">\n                            <span>Round 4</span>\n                            <span class=\"loss\">LOSS</span>\n                        </div>\n                        <div class=\"nums-row\">\n                            <div class=\"num-box\">1</div><div class=\"num-box\">2</div><div class=\"num-box\">7</div><div class=\"num-box\">7</div>\n                        </div>\n                        <div class=\"solutions\">\n                            <div><strong>Ref Solution:</strong></div>\n                            <div>• (7 * 7 - 1) / 2</div>\n                        </div>\n                    </div>\n                \n            </div>\n            <script>\n                // 页面加载完成后自动触发打印\n                window.onload = () => { setTimeout(() => window.print(), 500); };\n            </script>\n        </body>\n        </html>\n    ",
+ "themes": [
+  {
+   "id": "glass",
+   "name": "Glass (Default)",
+   "dot": "#a1c4fd"
+  },
+  {
+   "id": "paper",
+   "name": "🪵 Paper",
+   "dot": "#E5DEC9"
+  },
+  {
+   "id": "bamboo",
+   "name": "🎋 Bamboo",
+   "dot": "#C3D0B9"
+  },
+  {
+   "id": "leather",
+   "name": "📜 Leather",
+   "dot": "#D4B895"
+  },
+  {
+   "id": "dark",
+   "name": "🩸 Dark",
+   "dot": "#121212"
+  },
+  {
+   "id": "simple-white",
+   "name": "⚪ Plain White",
+   "dot": "#F5F5F5"
+  }
+ ],
+ "langs": [
+  {
+   "id": "en",
+   "start": "Start Game",
+   "intro": "A fast-paced math game suits for K-5 students"
+  },
+  {
+   "id": "zh",
+   "start": "开始游戏",
+   "intro": "一款适合小学1-2年级学生的快节奏数学游戏"
+  },
+  {
+   "id": "es",
+   "start": "Comenzar Juego",
+   "intro": "Un juego de matemáticas de ritmo rápido adecuado para estudiantes de 1° a 5° grado"
+  },
+  {
+   "id": "de",
+   "start": "Spiel Starten",
+   "intro": "Ein temporeiches Mathespiel für Schüler der Klassen 1 bis 5"
+  },
+  {
+   "id": "fr",
+   "start": "Démarrer le Jeu",
+   "intro": "Un jeu de mathématiques rapide adapté aux élèves de CP à CM2 (1ère à 5ème année)"
+  }
+ ]
+}

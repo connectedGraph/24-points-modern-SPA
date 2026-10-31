@@ -1,0 +1,10 @@
+# 依赖与构建产物
+node_modules/
+out/
+.cache/
+
+# sync-game.sh 从仓库根目录拷过来的游戏本体（真源在 ../index.html ../style.css ../script.js）
+public/game/
+
+# 第三方版权配乐不入库：新克隆下来跑 ./script/prepare-audio.sh <音频文件>
+public/music-60s.mp3

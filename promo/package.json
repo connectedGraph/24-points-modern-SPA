@@ -1,0 +1,34 @@
+{
+  "name": "24-points-promo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "24 Point · 60 秒 Remotion 宣传片（游戏本体以原生 DOM 跑在 iframe 里，按帧驱动）",
+  "scripts": {
+    "sync": "./script/sync-game.sh && node script/gen-solver-data.mjs",
+    "studio": "npm run sync && remotion studio",
+    "render": "npm run sync && remotion render Points24 out/24-points-promo-60s-4k60.mp4",
+    "preview": "npm run sync && remotion render Points24 out/preview-1080.mp4 --scale=0.5",
+    "still": "remotion still Points24",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.536",
+    "qrcode.react": "4.2.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "remotion": "4.0.536"
+  },
+  "devDependencies": {
+    "@remotion/bundler": "4.0.536",
+    "@remotion/renderer": "4.0.536",
+    "@types/react": "18.3.12",
+    "@types/react-dom": "18.3.1",
+    "typescript": "5.7.3"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/connectedGraph/24-points-modern-SPA.git",
+    "directory": "promo"
+  }
+}
